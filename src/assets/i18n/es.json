@@ -1,5 +1,18 @@
 {
+    "general": {
+        "start": "Empezar"
+    },
     "home": {
-        "title": "Personify,tu app"
+        "title": "Personify,tu app",
+        "subtitle": "Tu app de recetas de cocina",
+        "tutorial": "Tutorial"
+    },
+    "tutorial": {
+        "title_slide_1": "¿Que es Recipio?",
+        "text_slide_1": "Recipio es una app para crear libros de cocina y administrarlos",
+        "title_slide_2": "¿Que puedo hacer con Recipio?",
+        "text_slide_2": "Con Recipio podrás crear increibles libros de cocina y compartirlos con tus amigos",
+        "title_slide_3": "¿Como puedo empezar?"
+        
     }
 }

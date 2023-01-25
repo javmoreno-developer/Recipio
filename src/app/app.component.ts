@@ -10,6 +10,6 @@ export class AppComponent {
   constructor(
     private translate: TranslateService
   ) {
-    this.translate.setDefaultLang("en");
+    this.translate.setDefaultLang("es");
   }
 }
