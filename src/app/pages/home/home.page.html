@@ -7,7 +7,7 @@
       <h3>{{"home.subtitle" | translate}}</h3>
     </div>
     <div id="btn_container">
-      <ion-button color="button">{{"general.start" | translate | uppercase}}</ion-button>
+      <ion-button [routerLink]="['/main']" color="button">{{"general.start" | translate | uppercase}}</ion-button>
       <p [routerLink]="['/tutorial']">{{"home.tutorial" | translate}}</p>
     </div>
   </div>

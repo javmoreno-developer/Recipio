@@ -1,0 +1,24 @@
+<ion-content id="main_content">
+  <div id="first_layer">
+    <div id="title_container">
+      <h3>{{"general.app_title" | translate}}</h3>
+    </div>
+    <div class="settings_container">
+      <ion-icon name="settings-outline"></ion-icon>
+    </div>
+  </div>
+  <app-search-bar></app-search-bar>
+  <div id="main_books_content">
+    <h3>{{"main.title" | translate}}</h3>
+
+   <!-- <app-book [book]="book"></app-book>-->
+   <!-- Carga de datos -->
+   <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-sm="3" *ngFor="let book of list">
+          <app-book [book]="book"></app-book>
+        </ion-col>
+      </ion-row>
+   </ion-grid>
+  </div>
+</ion-content>

@@ -9,12 +9,17 @@ import { LocaleId } from '../app.module';
 import { LocaleService } from './services/locale.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { BookComponent } from './components/book/book.component';
 
 registerLocaleData(es);
 registerLocaleData(en);
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    SearchBarComponent,
+    BookComponent,
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -29,7 +34,10 @@ registerLocaleData(en);
       }
     })
   ],
-  exports: [],
+  exports: [
+    SearchBarComponent,
+    BookComponent
+  ],
   providers: [
     {
       provide: LOCALE_ID,

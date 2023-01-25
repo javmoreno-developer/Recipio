@@ -1,0 +1,20 @@
+ion-searchbar.custom {
+    --background: white;
+    
+    --color: black;
+    --placeholder-color: black;
+    --icon-color: black;
+    --clear-button-color: black;
+  
+    --border-radius: 20px;
+  }
+
+
+  
+  ion-searchbar.ios.custom {
+    --cancel-button-color: black;
+  }
+  
+  ion-searchbar.md.custom {
+    --cancel-button-color: black;
+  }

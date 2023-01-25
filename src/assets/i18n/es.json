@@ -1,6 +1,7 @@
 {
     "general": {
-        "start": "Empezar"
+        "start": "Empezar",
+        "app_title": "RECIPIO"
     },
     "home": {
         "title": "Personify,tu app",
@@ -14,5 +15,12 @@
         "text_slide_2": "Con Recipio podrás crear increibles libros de cocina y compartirlos con tus amigos",
         "title_slide_3": "¿Como puedo empezar?"
         
+    },
+    "searchbar": {
+        "books_pla": "Busca algun libro",
+        "recipe_pla": "Busca alguna receta"
+    },
+    "main": {
+        "title":"Aqui estan tus libros"
     }
 }
