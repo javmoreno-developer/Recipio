@@ -1,7 +1,9 @@
 {
     "general": {
         "start": "Empezar",
-        "app_title": "RECIPIO"
+        "app_title": "RECIPIO",
+        "submit": "Enviar",
+        "cancell": "Cancelar"
     },
     "home": {
         "title": "Personify,tu app",
@@ -22,5 +24,12 @@
     },
     "main": {
         "title":"Aqui estan tus libros"
+    },
+    "placeholder": {
+        "name": "Nombre",
+        "desc": "Description"
+    },
+    "modal": {
+        "add_title": "Add a book"
     }
 }

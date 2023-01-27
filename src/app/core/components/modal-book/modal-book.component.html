@@ -1,0 +1,44 @@
+<ion-content id="modal_form_container">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <h1>{{'modal.add_title' | translate}}</h1>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <ion-item>
+            <ion-input type="text" placeholder="{{'placeholder.name' | translate}}" formControlName="name"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input type="text" placeholder="{{'placeholder.desc' | translate}}" formControlName="description"></ion-input>
+          </ion-item>
+        
+          <div id="btn_container_modal">
+            <ion-button id="btn_accept" [disabled]="!form.valid" type="submit">{{"general.submit" | translate}}</ion-button>
+            <ion-button id="btn_cancell" (click)="onDismiss()">{{"general.cancell" | translate}}</ion-button>
+          </div>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+ 
+</ion-content>
+
+<!--
+   <h1>{{'modal.add_title' | translate}}</h1>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-input type="text" placeholder="{{'placeholder.name' | translate}}" formControlName="name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" placeholder="{{'placeholder.desc' | translate}}" formControlName="description"></ion-input>
+    </ion-item>
+  
+    <div>
+      <ion-button id="btn_accept" [disabled]="!form.valid" type="submit">{{"general.submit" | translate}}</ion-button>
+      <ion-button id="btn_cancell" (click)="onDismiss()">{{"general.cancell" | translate}}</ion-button>
+    </div>
+  </form>
+-->

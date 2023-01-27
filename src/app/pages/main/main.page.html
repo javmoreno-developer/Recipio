@@ -11,7 +11,6 @@
   <div id="main_books_content">
     <h3>{{"main.title" | translate}}</h3>
 
-   <!-- <app-book [book]="book"></app-book>-->
    <!-- Carga de datos -->
    <ion-grid>
       <ion-row>
@@ -21,4 +20,15 @@
       </ion-row>
    </ion-grid>
   </div>
+
+  <p *ngIf="emptyCards">
+    np tienes cartas
+  </p>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button color="dark" (click)="openModal()">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+   
+  </ion-fab>
 </ion-content>
