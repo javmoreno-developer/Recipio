@@ -6,7 +6,7 @@
         "cancell": "Cancelar"
     },
     "home": {
-        "title": "Personify,tu app",
+        "title": "RECIPIO",
         "subtitle": "Tu app de recetas de cocina",
         "tutorial": "Tutorial"
     },
@@ -27,9 +27,14 @@
     },
     "placeholder": {
         "name": "Nombre",
-        "desc": "Description"
+        "desc": "Descripcion",
+        "username": "Nombre de usuario",
+        "pass": "Contraseña"
     },
     "modal": {
-        "add_title": "Add a book"
+        "add_title": "Añadir un libro"
+    },
+    "settings": {
+        "delete_account": "Borrar cuenta"
     }
 }

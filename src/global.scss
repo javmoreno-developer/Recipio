@@ -31,6 +31,16 @@
 * {
     font-family: 'Patrick Hand', cursive;
 }
+
+ion-input{
+    --placeholder-color: red;
+    --placeholder-opacity: 1;
+}
+.sc-ion-input-md-h {
+    font-family: 'Patrick Hand', cursive;
+    --placeholder-color: black;
+}
+
 .searchbar-input-container {
     border: 3px solid;
     border-radius: 20px;

@@ -1,0 +1,28 @@
+<ion-content>
+  <section id="settings_content">
+    <h1>{{"general.app_title" | translate}}</h1>
+    <ion-avatar id="settings_image_container">
+      <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+    </ion-avatar>
+    <form>
+      <ion-item>
+        <ion-input type="text" placeholder="{{'placeholder.name' | translate}}"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input type="text" placeholder="{{'placeholder.username' | translate}}"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-input type="text" placeholder="{{'placeholder.pass' | translate}}"></ion-input>
+      </ion-item>
+    
+      <p id="delete_launch_settings">{{"settings.delete_account" | translate}} <ion-icon name="trash-outline"></ion-icon></p>
+      
+      <div id="btn_container_settings">
+        <ion-button id="btn_accept"  type="submit">{{"general.submit" | translate}}</ion-button>
+        <ion-button id="btn_cancell" [routerLink]="['/main']">{{"general.cancell" | translate}}</ion-button>
+      </div>
+    </form>
+  </section>
+</ion-content>
