@@ -36,5 +36,9 @@
     },
     "settings": {
         "delete_account": "Borrar cuenta"
+    },
+    "login": {
+        "sign_in_msg": "¿No tienes cuenta?",
+        "sign_in_msg_2": "Registrate"
     }
 }

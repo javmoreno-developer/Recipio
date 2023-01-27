@@ -17,7 +17,7 @@
         <ion-input type="text" placeholder="{{'placeholder.pass' | translate}}"></ion-input>
       </ion-item>
     
-      <p id="delete_launch_settings">{{"settings.delete_account" | translate}} <ion-icon name="trash-outline"></ion-icon></p>
+      <p id="delete_launch_settings" [routerLink]="['/login']">{{"settings.delete_account" | translate}} <ion-icon name="trash-outline"></ion-icon></p>
       
       <div id="btn_container_settings">
         <ion-button id="btn_accept"  type="submit">{{"general.submit" | translate}}</ion-button>

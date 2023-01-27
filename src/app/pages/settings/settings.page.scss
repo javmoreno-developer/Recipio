@@ -41,14 +41,20 @@ ion-item {
 }
 
 @media (max-width: 767.98px) {
-    form {
-        height: 60vh !important;
-        width: 90% !important;
-        #btn_container_settings {
-            display: flex;
-            flex-direction: column;
+    #settings_content {
+        form {
+            height: 60vh !important;
+            width: 90% !important;
+            ion-item {
+                width: 98% !important;
+            }
+            #btn_container_settings {
+                display: flex;
+                flex-direction: column;
+            }
         }
     }
+   
 
 }
 

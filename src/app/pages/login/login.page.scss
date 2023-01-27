@@ -1,0 +1,61 @@
+#login_content {
+    background: var(--ion-color-background);
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    
+    #login_img {
+        height: 20vh;
+        width: 20vw;
+        background-color: gray;
+    }
+    form {
+        height: 60vh;
+        display: flex;
+        width: 35%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        ion-item {
+            width: 90%;
+          
+        }
+        p span {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+    ion-item {
+        //background: black;
+        --background: var(--ion-color-background);
+    }
+    #btn_accept {
+        --background:var(--ion-color-green)
+    }
+}
+
+@media (max-width: 767.98px) {
+    #login_content {
+        form {
+            height: 60vh !important;
+            width: 90% !important;
+            ion-item {
+                width: 98% !important;
+            }
+        }
+        #login_img {
+            width: 90% !important;
+        }
+    }
+  
+
+
+}
