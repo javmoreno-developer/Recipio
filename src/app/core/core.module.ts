@@ -12,6 +12,7 @@ import { IonicModule } from '@ionic/angular';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { BookComponent } from './components/book/book.component';
 import { ModalBookComponent } from './components/modal-book/modal-book.component';
+import { DetailBookModalComponent } from './components/detail-book-modal/detail-book-modal.component';
 
 registerLocaleData(es);
 registerLocaleData(en);
@@ -21,6 +22,7 @@ registerLocaleData(en);
     SearchBarComponent,
     BookComponent,
     ModalBookComponent,
+    DetailBookModalComponent,
   ],
   imports: [
     CommonModule,
@@ -39,7 +41,8 @@ registerLocaleData(en);
   exports: [
     SearchBarComponent,
     BookComponent,
-    ModalBookComponent
+    ModalBookComponent,
+    DetailBookModalComponent,
   ],
   providers: [
     {

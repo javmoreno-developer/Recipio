@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Book } from '../../models/book';
 
 @Component({
   selector: 'app-book',
@@ -8,12 +9,16 @@ import { Component, Input, OnInit } from '@angular/core';
 export class BookComponent implements OnInit {
 
   data: any = {}
+  @Output() onDetail = new EventEmitter();
 
-  @Input("book") set book(n: any) {
+  @Input("book") set book(n: Book) {
     this.data = n;
   }
   constructor() { }
 
   ngOnInit() {}
 
+  callDetail() {
+    this.onDetail.next(this.data);
+  }
 }

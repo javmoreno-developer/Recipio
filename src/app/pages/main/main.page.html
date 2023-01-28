@@ -15,7 +15,7 @@
    <ion-grid>
       <ion-row>
         <ion-col size="12" size-sm="3" *ngFor="let book of list">
-          <app-book [book]="book"></app-book>
+          <app-book [book]="book" (onDetail)="callDetailModal($event)"></app-book>
         </ion-col>
       </ion-row>
    </ion-grid>

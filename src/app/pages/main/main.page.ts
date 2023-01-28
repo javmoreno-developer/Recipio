@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { BehaviorSubject } from 'rxjs';
+import { DetailBookModalComponent } from 'src/app/core/components/detail-book-modal/detail-book-modal.component';
 import { ModalBookComponent } from 'src/app/core/components/modal-book/modal-book.component';
 import { Book } from 'src/app/core/models/book';
 import { BookService } from 'src/app/core/services/book.service';
@@ -29,7 +30,7 @@ export class MainPage implements OnInit {
   ngOnInit() {}
 
 
-  /* Modal */
+  /* Modal añadir libro */
   async openModal() {
 
     const modal = await this.modalCtr.create({
@@ -50,6 +51,29 @@ export class MainPage implements OnInit {
           break;
       }
      }
+    });
+  }
+
+  /* Modal detail libro */
+
+  callDetailModal(book: Book) {
+    console.log("pulsado el id: "+book.id);
+    this.openDetailModal(book);
+  }
+
+  async openDetailModal(book: Book) {
+    const modal = await this.modalCtr.create({
+      component: DetailBookModalComponent,
+      componentProps: {
+        book: book
+      },
+      cssClass: 'modal'
+    });
+    modal.present();
+
+    modal.onDidDismiss().then(result => {
+     console.log(result);
+    
     });
   }
 

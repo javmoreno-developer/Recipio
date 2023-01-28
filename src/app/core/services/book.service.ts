@@ -23,37 +23,37 @@ export class BookService {
       {
         id: 0,
         name: "Vegetables 🌮",
-        description: "",
+        description: "desc",
         count_recipe: 13
       },
       {
         id: 1,
         name: "Meat🥩",
-        description: "",
+        description: "desc",
         count_recipe: 18,
       },
       {
         id: 2,
         name: "Vegetables 🌮",
-        description: "",
+        description: "desc",
         count_recipe: 13
       },
       {
         id: 3,
         name: "Meat🥩",
-        description: "",
+        description: "desc",
         count_recipe: 18,
       },
       {
         id: 4,
         name: "Vegetables 🌮",
-        description: "",
+        description: "desc",
         count_recipe: 13
       },
       {
         id: 5,
         name: "Meat🥩",
-        description: "",
+        description: "desc",
         count_recipe: 18,
       },
 

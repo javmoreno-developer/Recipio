@@ -32,7 +32,11 @@
         "pass": "Contraseña"
     },
     "modal": {
-        "add_title": "Añadir un libro"
+        "add_title": "Añadir un libro",
+        "ope_msg": "¿Que quieres hacer?",
+        "ope_upd": "Actualizar libro",
+        "ope_see": "Ver recetas",
+        "ope_del": "Borrar libro"
     },
     "settings": {
         "delete_account": "Borrar cuenta"
