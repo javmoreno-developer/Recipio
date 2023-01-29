@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { Book } from '../../models/book';
 
 @Component({
@@ -13,8 +14,12 @@ export class DetailBookModalComponent implements OnInit {
   @Input("book") set book(n: Book) {
     this.data = n;
   }
-  constructor() { }
+  constructor(private modal:ModalController) { }
 
   ngOnInit() {}
+
+  modalOperation(param: string) {
+    this.modal.dismiss({book: this.data?.id},param)
+  }
 
 }

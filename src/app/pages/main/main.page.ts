@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { BehaviorSubject } from 'rxjs';
 import { DetailBookModalComponent } from 'src/app/core/components/detail-book-modal/detail-book-modal.component';
@@ -18,7 +19,7 @@ export class MainPage implements OnInit {
   mylist$ = this.mylistSubject.asObservable()
 
   emptyCards: boolean = false;
-  constructor(private bookSvc: BookService,private modalCtr: ModalController) {
+  constructor(private bookSvc: BookService,private modalCtr: ModalController,private router: Router) {
     this.list = this.bookSvc.book_list;
 
     if(this.list.length == 0) {
@@ -73,7 +74,13 @@ export class MainPage implements OnInit {
 
     modal.onDidDismiss().then(result => {
      console.log(result);
-    
+     console.log(result.role);
+      switch(result.role) {
+        case "see":
+          let id = result.data.book;
+          this.router.navigate([`recipes/${id}`])
+          break;
+      }
     });
   }
 

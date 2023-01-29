@@ -20,10 +20,13 @@
     },
     "searchbar": {
         "books_pla": "Busca algun libro",
-        "recipe_pla": "Busca alguna receta"
+        "recipes_pla": "Busca alguna receta"
     },
     "main": {
         "title":"Aqui estan tus libros"
+    },
+    "main_recipes": {
+        "title":"Recetas pertenecientes al libro "
     },
     "placeholder": {
         "name": "Nombre",

@@ -1,0 +1,38 @@
+#item_book_container {
+    height: 20vh;
+    width: 15vw;
+    border: 3px solid black;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+#item_recipe_container {
+    height: 20vh;
+    width: 15vw;
+    border: 3px solid black;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    cursor: pointer;
+    ion-chip {
+        --background: var(--ion-color-red)	
+    }
+}
+
+@media (max-width: 767.98px) {
+    #item_book_container {
+        width: 70vw;
+    }
+
+    #item_recipe_container {
+        width: 70vw;
+    }
+
+}

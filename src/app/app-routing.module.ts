@@ -14,7 +14,8 @@ const routes: Routes = [
   {
     path: 'tutorial',
     loadChildren: () => import('./pages/tutorial/tutorial.module').then( m => m.TutorialPageModule)
-  },  {
+  },
+  {
     path: 'main',
     loadChildren: () => import('./pages/main/main.module').then( m => m.MainPageModule)
   },
@@ -25,6 +26,10 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'recipes/:id',
+    loadChildren: () => import('./pages/recipes/recipes.module').then( m => m.RecipesPageModule)
   },
 
 ];

@@ -10,9 +10,9 @@ import { LocaleService } from './services/locale.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
-import { BookComponent } from './components/book/book.component';
 import { ModalBookComponent } from './components/modal-book/modal-book.component';
 import { DetailBookModalComponent } from './components/detail-book-modal/detail-book-modal.component';
+import { ItemCardComponent } from './components/item-card/item-card.component';
 
 registerLocaleData(es);
 registerLocaleData(en);
@@ -20,9 +20,9 @@ registerLocaleData(en);
 @NgModule({
   declarations: [
     SearchBarComponent,
-    BookComponent,
     ModalBookComponent,
     DetailBookModalComponent,
+    ItemCardComponent,
   ],
   imports: [
     CommonModule,
@@ -40,9 +40,9 @@ registerLocaleData(en);
   ],
   exports: [
     SearchBarComponent,
-    BookComponent,
     ModalBookComponent,
     DetailBookModalComponent,
+    ItemCardComponent
   ],
   providers: [
     {

@@ -5,7 +5,7 @@
   <div id="detail_operations">
     <h3>{{"modal.ope_msg" | translate}}</h3>
     <ion-button id="detail_ope_upd">{{"modal.ope_upd" | translate}}</ion-button>
-    <ion-button id="detail_ope_see">{{"modal.ope_see" | translate}}</ion-button>
+    <ion-button id="detail_ope_see" (click)="modalOperation('see')">{{"modal.ope_see" | translate}}</ion-button>
     <p id="detail_ope_del">{{"modal.ope_del" | translate}} <ion-icon name="trash-outline"></ion-icon></p>
   </div>
 </div>

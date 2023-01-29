@@ -72,4 +72,10 @@ export class BookService {
     });
     this._bookSubject?.next(this.book_list);
   }
+
+  getBook(id: number) {
+    return this.book_list.filter((x)=> {
+      return x.id == id;
+    })[0].name;
+  }
 }
