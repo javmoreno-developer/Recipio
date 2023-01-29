@@ -1,0 +1,65 @@
+#detail_modal_content {
+    display: flex;
+    height: 100%;
+    width: 100%;
+
+    #first_column {
+        height: 100%;
+        width: 25%; 
+    }
+
+    #second_column {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 50%;
+        height: 100%;
+        justify-content: space-around;
+        #detail_operations {
+            height: 60%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+
+            #detail_ope_del {
+                color: var(--ion-color-orange);
+                cursor: pointer;
+            }
+
+            #detail_ope_upd {
+
+                --background: var(--ion-color-green)
+            }
+
+            #detail_ope_see {
+                --background: var(--ion-color-blue);
+                color: black
+            }
+        }
+    }
+    #third_column {
+        width: 25%;
+        height: 100%;
+        display: flex;
+        justify-content: flex-end;
+        ion-icon {
+            margin-top: 20px;
+            margin-right: 20px;
+            font-size: 30px;
+            cursor: pointer;
+        }
+    }
+}
+
+
+@media (max-width: 767.98px) {
+    #detail_modal_content {
+        #first_column {
+            width: 15%;
+        }
+        #second_column {
+            width: 70%;
+        }
+    }   
+}

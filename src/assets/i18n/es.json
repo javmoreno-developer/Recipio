@@ -39,7 +39,9 @@
         "ope_msg": "¿Que quieres hacer?",
         "ope_upd": "Actualizar libro",
         "ope_see": "Ver recetas",
-        "ope_del": "Borrar libro"
+        "ope_del": "Borrar libro",
+        "ope_upd_rec": "Actualizar receta",
+        "ope_del_rec": "Borrar receta"
     },
     "settings": {
         "delete_account": "Borrar cuenta"

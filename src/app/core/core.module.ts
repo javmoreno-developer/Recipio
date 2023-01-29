@@ -11,8 +11,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { ModalBookComponent } from './components/modal-book/modal-book.component';
-import { DetailBookModalComponent } from './components/detail-book-modal/detail-book-modal.component';
 import { ItemCardComponent } from './components/item-card/item-card.component';
+import { DetailItemModalComponent } from './components/detail-item-modal/detail-item-modal.component';
 
 registerLocaleData(es);
 registerLocaleData(en);
@@ -21,8 +21,8 @@ registerLocaleData(en);
   declarations: [
     SearchBarComponent,
     ModalBookComponent,
-    DetailBookModalComponent,
     ItemCardComponent,
+    DetailItemModalComponent
   ],
   imports: [
     CommonModule,
@@ -41,8 +41,8 @@ registerLocaleData(en);
   exports: [
     SearchBarComponent,
     ModalBookComponent,
-    DetailBookModalComponent,
-    ItemCardComponent
+    ItemCardComponent,
+    DetailItemModalComponent
   ],
   providers: [
     {

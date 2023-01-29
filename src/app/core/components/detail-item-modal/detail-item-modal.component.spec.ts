@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { DetailBookModalComponent } from './detail-book-modal.component';
+import { DetailItemModalComponent } from './detail-item-modal.component';
 
-describe('DetailBookModalComponent', () => {
-  let component: DetailBookModalComponent;
-  let fixture: ComponentFixture<DetailBookModalComponent>;
+describe('DetailItemModalComponent', () => {
+  let component: DetailItemModalComponent;
+  let fixture: ComponentFixture<DetailItemModalComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ DetailBookModalComponent ],
+      declarations: [ DetailItemModalComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(DetailBookModalComponent);
+    fixture = TestBed.createComponent(DetailItemModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

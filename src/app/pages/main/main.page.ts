@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { BehaviorSubject } from 'rxjs';
-import { DetailBookModalComponent } from 'src/app/core/components/detail-book-modal/detail-book-modal.component';
+import { DetailItemModalComponent } from 'src/app/core/components/detail-item-modal/detail-item-modal.component';
 import { ModalBookComponent } from 'src/app/core/components/modal-book/modal-book.component';
 import { Book } from 'src/app/core/models/book';
 import { BookService } from 'src/app/core/services/book.service';
@@ -58,13 +58,12 @@ export class MainPage implements OnInit {
   /* Modal detail libro */
 
   callDetailModal(book: Book) {
-    console.log("pulsado el id: "+book.id);
     this.openDetailModal(book);
   }
 
   async openDetailModal(book: Book) {
     const modal = await this.modalCtr.create({
-      component: DetailBookModalComponent,
+      component: DetailItemModalComponent,
       componentProps: {
         book: book
       },
