@@ -1,6 +1,22 @@
 export interface User {
-    id: number,
-    name: string,
-    username: string,
-    pass: string,
+    uid:string;
+    nickname:string;
+    email:string;
+    provider:string;
+    token:string,
+    surname:string,
+    name:string
+}
+
+export interface UserLogin{
+    identifier:string,
+    password:string
+}
+
+export interface UserRegister{
+    email:string,
+    password:string,
+    nickname:string,
+    surname:string,
+    name:string
 }

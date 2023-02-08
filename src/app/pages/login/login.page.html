@@ -2,24 +2,7 @@
   <section id="login_content">
     
     <ion-img id="login_img" src="../../../assets/images/logo_recipio.png" alt="The Wisconsin State Capitol building in Madison, WI at night"></ion-img>
-    <form>
-      <ion-item>
-        <ion-input type="text" placeholder="{{'placeholder.name' | translate}}"></ion-input>
-      </ion-item>
-
-   
-      <ion-item>
-        <ion-input type="text" placeholder="{{'placeholder.pass' | translate}}"></ion-input>
-      </ion-item>
-    
-      <div>
-
-        <p id="delete_launch_settings">{{"login.sign_in_msg" | translate}} <span>{{"login.sign_in_msg_2" | translate}}</span></p>
-        <ion-button id="btn_accept"  type="submit">{{"general.submit" | translate}}</ion-button>
-      </div>
-      
-
-
-    </form>
+    <app-signin (onSignin)="signIn($event)" (onRegister)="changeRegister($event)" *ngIf="!register"></app-signin>
+    <app-signup (onSignup)="signUp($event)" (onRegister)="changeRegister($event)" *ngIf="register"></app-signup>
   </section>
 </ion-content>

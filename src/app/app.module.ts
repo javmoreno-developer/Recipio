@@ -10,6 +10,13 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { createTranslateLoader } from './core/utils/js/translate';
 import { LocaleService } from './core/services/locale.service';
+import { FirebaseService } from './core/services/firebase/firebase-service';
+import { FirebaseWebService } from './core/services/firebase/web/firebase-web.service';
+
+export function firebaseServiceFactory() {
+  return  new FirebaseWebService();
+}
+
 
 export class LocaleId extends String {
   constructor(private localeService: LocaleService) {
@@ -41,10 +48,15 @@ export class LocaleId extends String {
               
           })
     ],
-    providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },{
+    providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy, },{
       provide: LOCALE_ID,
       useClass: LocaleId,
       deps: [LocaleService],
+    },
+    {
+      provide: FirebaseService,
+      deps: [],
+      useFactory: firebaseServiceFactory
     },
   ],
   bootstrap: [AppComponent],

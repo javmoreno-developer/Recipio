@@ -13,6 +13,8 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { ModalBookComponent } from './components/modal-book/modal-book.component';
 import { ItemCardComponent } from './components/item-card/item-card.component';
 import { DetailItemModalComponent } from './components/detail-item-modal/detail-item-modal.component';
+import { SigninComponent } from './components/signin/signin.component';
+import { SignupComponent } from './components/signup/signup.component';
 
 registerLocaleData(es);
 registerLocaleData(en);
@@ -22,7 +24,9 @@ registerLocaleData(en);
     SearchBarComponent,
     ModalBookComponent,
     ItemCardComponent,
-    DetailItemModalComponent
+    DetailItemModalComponent,
+    SigninComponent,
+    SignupComponent,
   ],
   imports: [
     CommonModule,
@@ -42,7 +46,9 @@ registerLocaleData(en);
     SearchBarComponent,
     ModalBookComponent,
     ItemCardComponent,
-    DetailItemModalComponent
+    DetailItemModalComponent,
+    SigninComponent,
+    SignupComponent,
   ],
   providers: [
     {

@@ -29,10 +29,12 @@
         "title":"Recetas pertenecientes al libro "
     },
     "placeholder": {
-        "name": "Nombre",
+        "name": "Apellidos",
+        "surname": "Nombre",
         "desc": "Descripcion",
-        "username": "Nombre de usuario",
-        "pass": "Contraseña"
+        "nickname": "Nombre de usuario",
+        "pass": "Contraseña",
+        "email": "Correo"
     },
     "modal": {
         "add_title": "Añadir un libro",
@@ -48,6 +50,8 @@
     },
     "login": {
         "sign_in_msg": "¿No tienes cuenta?",
-        "sign_in_msg_2": "Registrate"
+        "sign_in_msg_2": "Registrate",
+        "sign_up_msg": "¿Tienes una cuenta?",
+        "sign_up_msg_2": "Acceder"
     }
 }

@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
+import { UserLogin } from 'src/app/core/models/user';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +12,57 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPage implements OnInit {
 
-  constructor() { }
+  register: Boolean = false;
+  constructor(
+    private user:UserService,
+    private router: Router
+  ) { 
+   
+  }
+
+  changeRegister(param) {
+    this.register = param;
+  }
+
+  // registro
+  async signUp(param){
+    console.log(param);
+
+    await this.user.register(param);
+
+    //this.router.navigate(['main'], {replaceUrl:true});
+  } 
+  
 
   ngOnInit() {
   }
 
+  async signIn(param: UserLogin){
+    console.log("signin")
+
+    console.log(param);
+    try {
+      await this.user.login(param);
+      //await this.user.signOut();
+      this.router.navigate(['main'], {replaceUrl:true});
+      console.log("logueado");
+    } catch (error) {
+      console.log(error);
+
+    }
+    
+  }
+
+ /* hasFormError(error){
+    return this.form?.errors && Object.keys(this.form.errors).filter(e=>e==error).length==1;
+  }
+  
+  errorsToArray(errors){
+   
+    if(errors && !('required' in errors))
+      return [Object.keys(errors)[0]];
+    else
+      return [];
+  } 
+*/
 }
