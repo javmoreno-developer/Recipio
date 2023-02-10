@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { DetailItemModalComponent } from 'src/app/core/components/detail-item-modal/detail-item-modal.component';
 import { ModalBookComponent } from 'src/app/core/components/modal-book/modal-book.component';
 import { Book } from 'src/app/core/models/book';
 import { BookService } from 'src/app/core/services/book.service';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-main',
@@ -14,21 +15,43 @@ import { BookService } from 'src/app/core/services/book.service';
 })
 export class MainPage implements OnInit {
 
+  //list: BehaviorSubject = new Observable<Book[]>;
+  //mylistSubject: BehaviorSubject<Book[]> = new BehaviorSubject<Book[]>(this.list);
+  //mylist$ = this.mylistSubject.asObservable()
   list: Book[] = [];
-  mylistSubject: BehaviorSubject<Book[]> = new BehaviorSubject<Book[]>(this.list);
-  mylist$ = this.mylistSubject.asObservable()
 
   emptyCards: boolean = false;
-  constructor(private bookSvc: BookService,private modalCtr: ModalController,private router: Router) {
-    this.list = this.bookSvc.book_list;
-
-    if(this.list.length == 0) {
+  constructor(private bookSvc: BookService,private modalCtr: ModalController,private router: Router,private userSvc: UserService) {
+    //this.list = this.bookSvc._book$;
+   // console.log(this.list);
+     this.getAllBooks();
+   /* if(this.list.length == 0) {
       this.mylistSubject.next(this.list);
       this.emptyCards = true;
-    }
+    }*/
    }
 
   ngOnInit() {}
+
+  async getAllBooks() {
+    let uid = "";
+
+    await this.userSvc.user$.subscribe(user =>{
+      console.log(user);
+      uid = user.uid
+    })
+
+    var a = await this.bookSvc.getMyBooks(uid).then(result=>{
+     
+      console.log(result);
+     // return result;
+      this.list = result
+    });
+    return a;
+    /*console.log(a);
+    console.log(typeof (a));
+    return a.;*/
+  }
 
 
   /* Modal añadir libro */

@@ -3,7 +3,7 @@ import { BehaviorSubject } from "rxjs";
 import { FirebaseDocument, FirebaseService, FIRESTORAGE_PREFIX_PATH, FirestoreImages, FIRESTORE_IMAGES_COLLECTION } from "../firebase-service";
 import { initializeApp, deleteApp, getApp } from "firebase/app";
 import { setUserId, setUserProperties } from "firebase/analytics";
-import { getFirestore, addDoc, collection, updateDoc, doc, onSnapshot, getDoc, setDoc, query, where, getDocs, Unsubscribe, DocumentData, deleteDoc } from "firebase/firestore";
+import { getFirestore, addDoc, collection, updateDoc, doc, onSnapshot, getDoc, setDoc, query, where, getDocs, Unsubscribe, DocumentData, deleteDoc, QueryConstraint } from "firebase/firestore";
 import { getStorage, ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import { createUserWithEmailAndPassword, getAuth, deleteUser, signInAnonymously, signOut, signInWithEmailAndPassword, initializeAuth, indexedDBLocalPersistence, UserCredential } from "firebase/auth";
 
@@ -179,6 +179,12 @@ export class FirebaseWebService extends FirebaseService implements OnDestroy {
       subject.next(snapshot.docs.map<any>(doc => mapFunction(doc)));
     }, error => { });
   }
+
+  /*public subscribeToCollectionWithQuery(collectionName, subject: BehaviorSubject<any[]>, mapFunction: (el: DocumentData) => any, condition: QueryConstraint): Unsubscribe {
+    return onSnapshot(query(collection(this.db, collectionName),condition), (snapshot) => {
+      subject.next(snapshot.docs.map<any>(doc => mapFunction(doc)));
+    }, error => { });
+  }*/
 
   public async signOut(signInAnon: boolean = false) {
     try {

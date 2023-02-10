@@ -1,6 +1,6 @@
 export interface Book {
     id: number;
-    name: String,
+    title: String,
     description: String,
-    count_recipe: number
+    //count_recipe: number
 }
