@@ -34,7 +34,8 @@
         "desc": "Descripcion",
         "nickname": "Nombre de usuario",
         "pass": "Contraseña",
-        "email": "Correo"
+        "email": "Correo",
+        "title": "Titulo"
     },
     "modal": {
         "add_title": "Añadir un libro",

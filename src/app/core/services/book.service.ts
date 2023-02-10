@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DocumentData, QueryConstraint } from 'firebase/firestore';
+import { DocumentData, QueryConstraint, Unsubscribe } from 'firebase/firestore';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Book } from '../models/book';
 import { FirebaseService } from './firebase/firebase-service';
@@ -16,11 +16,14 @@ export class BookService {
 
   unsubscr;
   
-  constructor(private firebase:FirebaseService) {
-    let condition: any =  'where("uidUsu", "==", "eNgcorUKnAcYliDOt0Sl4XJXHDs1")';
-    
+
+  constructor(private firebase:FirebaseService) {    
     this.unsubscr = this.firebase.subscribeToCollection('books',this._bookSubject, this.mapBook);
-   }
+  }
+
+  public getSubscritpionByUser(subject: BehaviorSubject<any[]>, condition:string): Unsubscribe {
+    return this.firebase.subscribeToCollectionWithQueryUser('books', subject, this.mapBook, condition);
+  }
 
    private mapBook(doc:DocumentData){
     //console.log(doc['data']());
@@ -75,11 +78,24 @@ export class BookService {
     ]*/
   }
 
-  createBook(param: Book) {
-      console.log(param);
-      this.book_list.push(param);
-      this._bookSubject?.next(this.book_list);
+  async createBook(book: Book) {
+      try {
+        await this.firebase.createDocument("books",book);
+      } catch(error) {
+        console.log(error);
+      }
   }
+
+
+  /*
+   async addPerson(person:Person){
+    try {
+      await this.firebase.createDocument('usuarios', person);  
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  */
 
   deleteBook(id: number) {
     this.book_list.filter((x)=>{

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -13,23 +13,24 @@ import { UserService } from 'src/app/core/services/user.service';
   templateUrl: './main.page.html',
   styleUrls: ['./main.page.scss'],
 })
-export class MainPage implements OnInit {
+export class MainPage implements OnInit, OnDestroy {
 
   //list: BehaviorSubject = new Observable<Book[]>;
   //mylistSubject: BehaviorSubject<Book[]> = new BehaviorSubject<Book[]>(this.list);
   //mylist$ = this.mylistSubject.asObservable()
-  list: Book[] = [];
+  private _list: BehaviorSubject<Book[]> = new BehaviorSubject<Book[]>([]);
+  list$ = this._list.asObservable();
+
+  unsubscr;
+
 
   emptyCards: boolean = false;
   constructor(private bookSvc: BookService,private modalCtr: ModalController,private router: Router,private userSvc: UserService) {
-    //this.list = this.bookSvc._book$;
-   // console.log(this.list);
-     this.getAllBooks();
-   /* if(this.list.length == 0) {
-      this.mylistSubject.next(this.list);
-      this.emptyCards = true;
-    }*/
-   }
+    this.getAllBooks();
+  }
+  ngOnDestroy(): void {
+    this.unsubscr();
+  }
 
   ngOnInit() {}
 
@@ -39,19 +40,19 @@ export class MainPage implements OnInit {
     await this.userSvc.user$.subscribe(user =>{
       console.log(user);
       uid = user.uid
+      console.log(uid);
     })
+    this.unsubscr = this.bookSvc.getSubscritpionByUser(this._list, uid);
 
-    var a = await this.bookSvc.getMyBooks(uid).then(result=>{
-     
+   /* var a = await this.bookSvc.getMyBooks(uid).then(result=>{     
       console.log(result);
-     // return result;
-      this.list = result
+      //this.list.next(result)
+      //this.copy = result;
     });
-    return a;
-    /*console.log(a);
-    console.log(typeof (a));
-    return a.;*/
+    return a;*/
+   
   }
+  
 
 
   /* Modal añadir libro */
@@ -65,13 +66,26 @@ export class MainPage implements OnInit {
       cssClass: 'modal'
     });
     modal.present();
+    var uid = "";
+
+    await this.userSvc.user$.subscribe(user =>{
+      console.log(user);
+      uid = user.uid
+    });
 
     modal.onDidDismiss().then(result => {
+      
      console.log(result);
      if(result && result.data) {
       switch(result.data.mode) {
         case "crear":
-          this.bookSvc.createBook(result.data.book)
+          result.data.book.uidUsu = uid;
+          result.data.book.recipes = [];
+          console.log(result.data.book);
+          this.bookSvc.createBook(result.data.book);
+          //this.copy.push(result.data.book);
+          //this.list.next(this.copy);
+          //this.getAllBooks();
           break;
       }
      }

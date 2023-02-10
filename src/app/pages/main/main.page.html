@@ -14,7 +14,7 @@
    <!-- Carga de datos -->
    <ion-grid>
       <ion-row>
-        <ion-col size="12" size-sm="3" *ngFor="let book of list">
+        <ion-col size="12" size-sm="3" *ngFor="let book of list$ | async">
           <app-item-card [item]="{book: book, recipe: false}" (onDetail)="callDetailModal($event)"></app-item-card>
         </ion-col>
       </ion-row>

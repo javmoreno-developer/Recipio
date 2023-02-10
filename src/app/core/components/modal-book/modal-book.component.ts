@@ -14,8 +14,8 @@ export class ModalBookComponent implements OnInit {
 
   constructor(private fb:FormBuilder,private modal:ModalController) {
     this.form = this.fb.group({
-      id: [null],
-      name: ["", Validators.required],
+      //id: [null],
+      title: ["", Validators.required],
       description: ["",Validators.required],
     });
    }
