@@ -44,12 +44,6 @@ export class MainPage implements OnInit, OnDestroy {
     })
     this.unsubscr = this.bookSvc.getSubscritpionByUser(this._list, uid);
 
-   /* var a = await this.bookSvc.getMyBooks(uid).then(result=>{     
-      console.log(result);
-      //this.list.next(result)
-      //this.copy = result;
-    });
-    return a;*/
    
   }
   
@@ -109,12 +103,17 @@ export class MainPage implements OnInit, OnDestroy {
     modal.present();
 
     modal.onDidDismiss().then(result => {
-     console.log(result);
-     console.log(result.role);
+   
       switch(result.role) {
         case "see":
+          console.log(result);
+          console.log(result.role);
           let id = result.data.book;
-          this.router.navigate([`recipes/${id}`])
+          //this.router.navigate([`recipes/${id}`])
+          break;
+        case "delete":
+          console.log(result);
+          this.bookSvc.deleteBook(result.data.book);
           break;
       }
     });

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Book } from '../../models/book';
 import { Recipe } from '../../models/recipe';
@@ -21,16 +21,22 @@ export class DetailItemModalComponent implements OnInit {
     this.data = n;
     this.recipeInput = true;
   }
+
+ 
+
   constructor(private modal:ModalController) { }
 
   ngOnInit() {}
 
   modalOperation(param: string) {
-    this.modal.dismiss({book: this.data?.id},param)
+    console.log(param);
+    this.modal.dismiss({book: this.data},param)
   }
 
   closeModal() {
     this.modal.dismiss({});
   }
+
+  
 
 }

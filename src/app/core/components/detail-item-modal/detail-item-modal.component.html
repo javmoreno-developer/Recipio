@@ -9,7 +9,7 @@
       <h3>{{"modal.ope_msg" | translate}}</h3>
       <ion-button id="detail_ope_upd">{{"modal.ope_upd" | translate}}</ion-button>
       <ion-button id="detail_ope_see" (click)="modalOperation('see')">{{"modal.ope_see" | translate}}</ion-button>
-      <p id="detail_ope_del">{{"modal.ope_del" | translate}} <ion-icon name="trash-outline"></ion-icon></p>
+      <p id="detail_ope_del"  (click)="modalOperation('delete')">{{"modal.ope_del" | translate}} <ion-icon name="trash-outline"></ion-icon></p>
     </div>
   </div>
   <div id="third_column">
@@ -17,7 +17,7 @@
   </div>
 </section>
 
-
+<!--
 <section id="detail_modal_content" *ngIf="recipeInput == true">
   <div id="first_column"></div>
   <div id="second_column">
@@ -34,3 +34,4 @@
     <ion-icon name="close-outline" (click)="closeModal()"></ion-icon>
   </div>
 </section>
+-->

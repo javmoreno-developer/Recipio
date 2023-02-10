@@ -29,6 +29,7 @@ export class BookService {
     //console.log(doc['data']());
     return {
       id:0,
+      docId: doc["id"],
       title: doc["data"]().title,
       description: doc["data"]().description,
       recipes: doc["data"]().recipes
@@ -87,21 +88,22 @@ export class BookService {
   }
 
 
-  /*
-   async addPerson(person:Person){
+ /*
+  async deletePerson(person:Person){
     try {
-      await this.firebase.createDocument('usuarios', person);  
+      await this.firebase.deleteDocument('usuarios', person.docId);  
     } catch (error) {
       console.log(error);
     }
   }
-  */
+ */
 
-  deleteBook(id: number) {
-    this.book_list.filter((x)=>{
-      return x.id == id
-    });
-    this._bookSubject?.next(this.book_list);
+  async deleteBook(book: Book) {
+    try {
+      await this.firebase.deleteDocument("books",book.docId)
+    } catch(error) {
+      console.log(error);
+    }
   }
 
   getBook(id: number) {
@@ -116,6 +118,7 @@ export class BookService {
         var books = (await this.firebase.getDocumentsBy('books', "uidUsu", value)).map<Book>(doc => {
           return {
             id:0,
+            docId:doc.id,
             aw: "prueba",
             title: doc["data"]['title'],
             description: doc["data"]['description'],
