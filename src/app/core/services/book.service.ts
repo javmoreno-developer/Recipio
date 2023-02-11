@@ -87,14 +87,31 @@ export class BookService {
       }
   }
 
-
- /*
-  async deletePerson(person:Person){
+  async updateBook(book:Book) {
     try {
-      await this.firebase.deleteDocument('usuarios', person.docId);  
+      await this.firebase.updateDocument('books', book.docId, book);  
+    } catch (error) {
+      console.log(error);
+    } 
+  }
+ /*
+  async updatePerson(person:Person){
+    var _person = {
+      docId:person.docId,
+      first_name:person.first_name,
+      last_name:person.last_name,
+      nickname:person.nickname
+    };
+    if(person['pictureFile']){
+      var response = await this.uploadImage(person['pictureFile']);
+      _person['picture'] = response.image;
+    }
+    try {
+      await this.firebase.updateDocument('usuarios', person.docId, _person);  
     } catch (error) {
       console.log(error);
     }
+      
   }
  */
 
@@ -115,7 +132,7 @@ export class BookService {
   getMyBooks(value) {
     return new Promise<Book[]>(async (resolve, reject)=>{
       try {
-        var books = (await this.firebase.getDocumentsBy('books', "uidUsu", value)).map<Book>(doc => {
+        var books = (await this.firebase.getDocumentsBy('books', "uid", value)).map<Book>(doc => {
           return {
             id:0,
             docId:doc.id,
@@ -132,23 +149,5 @@ export class BookService {
     });
   }
 
-  /*getAssignmentsBy(field, value){
-    return new Promise<Assignment[]>(async (resolve, reject)=>{
-      try {
-        var assignments = (await this.firebase.getDocumentsBy('asignaciones', field, value)).map<Assignment>(doc=>{
-          return {
-            id:0,
-            docId:doc.id,
-            personId:doc.data.personId,
-            taskId:doc.data.taskId,
-            createdAt:doc.data.createdAt,
-            dateTime:doc.data.dateTime
-          }
-        });
-        resolve(assignments);  
-      } catch (error) {
-        reject(error);
-      }
-    });
-  }*/
+  
 }

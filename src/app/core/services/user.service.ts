@@ -13,6 +13,8 @@ export class UserService {
   public isLogged$ = this._isLogged.asObservable();
   private _user = new BehaviorSubject<User>(null);
   public user$ = this._user.asObservable();
+  public goTutorial = false;
+  
   constructor(
     private firebase:FirebaseService,
     private router:Router
@@ -25,7 +27,11 @@ export class UserService {
     this.firebase.isLogged$.subscribe(async (logged)=>{
       if(logged){
         this._user.next((await this.firebase.getDocument('users', this.firebase.getUser().uid)).data as User);
-        this.router.navigate(['main']);
+        if(this.goTutorial == false) {
+          this.router.navigate(['main']);
+        } else {
+          this.router.navigate(['tutorial']);
+        }
       }
       this._isLogged.next(logged);
     });
@@ -49,11 +55,13 @@ export class UserService {
   }
 
   signOut(){
+    this.goTutorial = false;
     this.firebase.signOut();
     this.router.navigate(['login']);
   }
   
   register(data:UserRegister){
+    this.goTutorial = true;
     return new Promise<string>(async (resolve, reject)=>{
       if(!this._isLogged.value){
         try {
@@ -70,6 +78,7 @@ export class UserService {
               name:data.name
             }, _user.user.uid);
             await this.firebase.connectUserWithEmailAndPassword(data.email, data.password);
+            //this.router.navigate(['tutorial']);
         } catch (error) {
           reject(error);
         }

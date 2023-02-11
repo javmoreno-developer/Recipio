@@ -19,13 +19,28 @@
 
   <ion-item>
     <ion-input type="text" placeholder="{{'placeholder.pass' | translate}}" formControlName="password"></ion-input>
+   
   </ion-item>
+  <span
+  class="validationError"
+  *ngIf="hasFormError('passwordProto')"
+  >{{'validators.passwordProto' | translate}}</span> 
+  
 
+  <ion-item>
+    <ion-input type="text" placeholder="{{'placeholder.confirm_pass' | translate}}" formControlName="confirmPassword"></ion-input>
+    
+  </ion-item>
+  <span
+  class="validationError"
+  *ngIf="hasFormError('passwordMatch') && form.get('confirmPassword').value"
+  >{{'validators.passwordMatch' | translate}}</span>
+  
   <div>
 
     <p id="delete_launch_settings">{{"login.sign_up_msg" | translate}} <span (click)="toRegister()">{{"login.sign_up_msg_2" |
         translate}}</span></p>
-    <ion-button id="btn_accept" type="submit">{{"general.submit" | translate}}</ion-button>
+    <ion-button id="btn_accept" [disabled]="!form.valid" type="submit">{{"general.submit" | translate}}</ion-button>
   </div>
 
 

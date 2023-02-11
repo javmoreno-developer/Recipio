@@ -2,7 +2,8 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <h1>{{'modal.add_title' | translate}}</h1>
+        <h1 *ngIf="actBook=='crear'">{{'modal.add_title' | translate}}</h1>
+        <h1 *ngIf="actBook=='actualizar'">{{'modal.upd_title' | translate}}</h1>
       </ion-col>
     </ion-row>
     <ion-row>

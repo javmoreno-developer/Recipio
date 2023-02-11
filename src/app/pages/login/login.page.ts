@@ -26,11 +26,8 @@ export class LoginPage implements OnInit {
 
   // registro
   async signUp(param){
-    console.log(param);
-
     await this.user.register(param);
 
-    //this.router.navigate(['main'], {replaceUrl:true});
   } 
   
 
@@ -53,16 +50,4 @@ export class LoginPage implements OnInit {
     
   }
 
- /* hasFormError(error){
-    return this.form?.errors && Object.keys(this.form.errors).filter(e=>e==error).length==1;
-  }
-  
-  errorsToArray(errors){
-   
-    if(errors && !('required' in errors))
-      return [Object.keys(errors)[0]];
-    else
-      return [];
-  } 
-*/
 }

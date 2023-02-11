@@ -12,7 +12,7 @@
 
     <p id="delete_launch_settings">{{"login.sign_in_msg" | translate}} <span (click)="toRegister()">{{"login.sign_in_msg_2" |
         translate}}</span></p>
-    <ion-button id="btn_accept" type="submit">{{"general.submit" | translate}}</ion-button>
+    <ion-button [disabled]="!form.valid" id="btn_accept" type="submit">{{"general.submit" | translate}}</ion-button>
   </div>
 
 

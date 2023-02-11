@@ -50,12 +50,12 @@ export class MainPage implements OnInit, OnDestroy {
 
 
   /* Modal añadir libro */
-  async openModal() {
+  async openModal(param = false) {
 
     const modal = await this.modalCtr.create({
       component: ModalBookComponent,
       componentProps: {
-       // act: this.tagSvc.getTagById(this.id)
+       act: param
       },
       cssClass: 'modal'
     });
@@ -73,13 +73,14 @@ export class MainPage implements OnInit, OnDestroy {
      if(result && result.data) {
       switch(result.data.mode) {
         case "crear":
-          result.data.book.uidUsu = uid;
+          result.data.book.uid = uid;
           result.data.book.recipes = [];
           console.log(result.data.book);
           this.bookSvc.createBook(result.data.book);
-          //this.copy.push(result.data.book);
-          //this.list.next(this.copy);
-          //this.getAllBooks();
+          break;
+        case "actualizar":
+          console.log(result.data);
+          this.bookSvc.updateBook(result.data.book);
           break;
       }
      }
@@ -109,12 +110,14 @@ export class MainPage implements OnInit, OnDestroy {
           console.log(result);
           console.log(result.role);
           let id = result.data.book;
-          //this.router.navigate([`recipes/${id}`])
           break;
         case "delete":
           console.log(result);
           this.bookSvc.deleteBook(result.data.book);
           break;
+        case "update":
+          console.log(result);
+          this.openModal(result.data.book);
       }
     });
   }

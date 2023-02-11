@@ -181,7 +181,7 @@ export class FirebaseWebService extends FirebaseService implements OnDestroy {
   }
 
   public subscribeToCollectionWithQueryUser(collectionName, subject: BehaviorSubject<any[]>, mapFunction: (el: DocumentData) => any, condition: string): Unsubscribe {
-    return onSnapshot(query(collection(this.db, collectionName),where("uidUsu","==",condition)), (snapshot) => {
+    return onSnapshot(query(collection(this.db, collectionName),where("uid","==",condition)), (snapshot) => {
       subject.next(snapshot.docs.map<any>(doc => mapFunction(doc)));
     }, error => { });
   }

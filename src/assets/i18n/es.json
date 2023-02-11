@@ -34,11 +34,13 @@
         "desc": "Descripcion",
         "nickname": "Nombre de usuario",
         "pass": "Contraseña",
+        "confirm_pass": "Confirmar contraseña",
         "email": "Correo",
         "title": "Titulo"
     },
     "modal": {
         "add_title": "Añadir un libro",
+        "upd_title": "Actualizar un libro",
         "ope_msg": "¿Que quieres hacer?",
         "ope_upd": "Actualizar libro",
         "ope_see": "Ver recetas",
@@ -54,5 +56,10 @@
         "sign_in_msg_2": "Registrate",
         "sign_up_msg": "¿Tienes una cuenta?",
         "sign_up_msg_2": "Acceder"
+    },
+    "validators":{
+        "passwordMatch": "Las contraseñas no coinciden",
+        "passwordProto": "Al menos 8 caracteres, una letra mayúscula, una letra minúscula y un número",
+        "email": "Debe introducir un email válido"
     }
 }

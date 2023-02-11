@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
+import { PasswordValidation } from '../../utils/password-validator';
 
 @Component({
   selector: 'app-signup',
@@ -24,7 +25,8 @@ export class SignupComponent implements OnInit {
       name:["", Validators.required],
       nickname:["", Validators.required],
       password:["", Validators.required],
-    });
+      confirmPassword:["", Validators.required],
+    },{validator:[PasswordValidation.passwordMatch, PasswordValidation.passwordProto]});
 
   }
 
@@ -37,5 +39,17 @@ export class SignupComponent implements OnInit {
   toRegister() {
     this.onRegister.emit(false);
   }
+
+  hasFormError(error){
+    return this.form?.errors && Object.keys(this.form.errors).filter(e=>e==error).length==1;
+  }
+  
+  errorsToArray(errors){
+   
+    if(errors && !('required' in errors))
+      return [Object.keys(errors)[0]];
+    else
+      return [];
+  } 
 
 }
