@@ -1,0 +1,31 @@
+#main_content {
+    background: var(--ion-color-background);
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+}
+
+#first_layer {
+    width: 98%;
+    height: 7vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    ion-icon {
+        font-size: 30px;
+    }
+    ion-avatar {
+        border:3px solid;
+        background-color: var(--ion-color-white);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px !important; 
+        height : 40px !important;
+    }
+}
+
+
+@media (max-width: 767.98px) {
+}

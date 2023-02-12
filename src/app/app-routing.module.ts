@@ -9,7 +9,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'recipeContent',
     pathMatch: 'full'
   },
   {
@@ -33,6 +33,12 @@ const routes: Routes = [
     path: 'recipes/:id',
     loadChildren: () => import('./pages/recipes/recipes.module').then( m => m.RecipesPageModule)
   },
+  {
+    path: 'recipeContent',
+    loadChildren: () => import('./pages/recipe-content/recipe-content.module').then( m => m.RecipeContentPageModule),
+    canActivate:[AuthGuard]
+  },
+
 
 ];
 

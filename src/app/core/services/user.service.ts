@@ -13,7 +13,8 @@ export class UserService {
   public isLogged$ = this._isLogged.asObservable();
   private _user = new BehaviorSubject<User>(null);
   public user$ = this._user.asObservable();
-  public goTutorial = false;
+  //public goTo = "main";
+  public goTo = "recipeContent";
   
   constructor(
     private firebase:FirebaseService,
@@ -27,11 +28,7 @@ export class UserService {
     this.firebase.isLogged$.subscribe(async (logged)=>{
       if(logged){
         this._user.next((await this.firebase.getDocument('users', this.firebase.getUser().uid)).data as User);
-        if(this.goTutorial == false) {
-          this.router.navigate(['main']);
-        } else {
-          this.router.navigate(['tutorial']);
-        }
+        this.router.navigate([this.goTo]);
       }
       this._isLogged.next(logged);
     });
@@ -55,13 +52,13 @@ export class UserService {
   }
 
   signOut(){
-    this.goTutorial = false;
+    this.goTo = "main";
     this.firebase.signOut();
     this.router.navigate(['login']);
   }
   
   register(data:UserRegister){
-    this.goTutorial = true;
+    this.goTo = "tutorial";
     return new Promise<string>(async (resolve, reject)=>{
       if(!this._isLogged.value){
         try {
@@ -88,5 +85,7 @@ export class UserService {
       }
     });
   }
+
+ 
 
 }

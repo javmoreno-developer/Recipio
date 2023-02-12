@@ -122,4 +122,9 @@ export class MainPage implements OnInit, OnDestroy {
     });
   }
 
+
+  createRecipe() {
+    this.router.navigate(['recipeContent'])
+
+  }
 }
