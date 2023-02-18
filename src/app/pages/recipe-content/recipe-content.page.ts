@@ -60,6 +60,7 @@ export class RecipeContentPage implements OnInit {
 
   deleteItem(param) {
     console.log(param);
+    console.log(this.segmentIngredientsSubject.value.length);
 
     let list = [];
     if (this.toShow == "ingredients") {
@@ -67,6 +68,12 @@ export class RecipeContentPage implements OnInit {
       list = this.segmentIngredientsSubject.value.filter((element) => {
         return element.blockId != param;
       });
+
+      // ajustamos indices
+      for(let i = param; i< list.length;i++) {
+        list[i].blockId --; 
+      }
+
       console.log(list)
       this.segmentIngredientsSubject.next(list)
     } else {
