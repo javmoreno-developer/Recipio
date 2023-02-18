@@ -13,10 +13,12 @@ import { RecipeService } from 'src/app/core/services/recipe.service';
 export class RecipeContentPage implements OnInit {
 
 
-  segmentIngredients: recipeBlock[] = [{title: "",content: {text: ""}},{title: "",content: {text: ""}}]
-  segmentProcess: recipeBlock[] =  [{title: "",content: {text: ""}}]
+  segmentIngredients: recipeBlock[] = [{ blockId: 0, title: "", content: { text: "" } }, { blockId: 1, title: "", content: { text: "" } }]
+  segmentProcess: recipeBlock[] = [{ blockId: 0, title: "", content: { text: "" } }]
+
   counterIngredients = this.segmentIngredients.length;
   counterProcess = this.segmentProcess.length;
+
   toShow = "ingredients"
   warnmsg = ""
 
@@ -28,27 +30,29 @@ export class RecipeContentPage implements OnInit {
   private segmentProcessSubject = new BehaviorSubject<recipeBlock[]>(this.segmentProcess)
   segmentProcess$ = this.segmentProcessSubject.asObservable()
 
-  constructor(private cdr: ChangeDetectorRef,private alertController: AlertController,private recipeSvc: RecipeService) {
-    console.log("mostrando: "+this.toShow)
-   }
+  constructor(private cdr: ChangeDetectorRef, private alertController: AlertController, private recipeSvc: RecipeService) {
+    //console.log("mostrando: "+this.toShow)
+  }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   newElement() {
     let list = [];
-    if(this.toShow == "ingredients") {
+    if (this.toShow == "ingredients") {
       list = this.segmentIngredientsSubject.value;
-      console.log(list);
+      //console.log(list);
       // ingredients list
-      list.push({uid: this.counterIngredients});
-      
+      list.push({ blockId: this.counterIngredients, title: "", content: { text: "" } });
+      this.counterIngredients++;
+
       this.segmentIngredientsSubject.next(list)
     } else {
       // process list
       list = this.segmentProcessSubject.value;
+
+      list.push({ blockId: this.counterProcess, title: "", content: { text: "" } });
       this.counterProcess++;
-      list.push({uid: this.counterProcess});
-      
+
       this.segmentProcessSubject.next(list)
 
     }
@@ -56,56 +60,55 @@ export class RecipeContentPage implements OnInit {
 
   deleteItem(param) {
     console.log(param);
- 
-    let list = [];
-    if(this.toShow == "ingredients") {
-      this.counterIngredients--;
-      for(let i =0; i< this.counterIngredients;i++) {
-        list.push(this.segmentIngredients[i]);
-      }
-    
-        this.segmentIngredientsSubject.next(list)
-    } else {
-      this.counterProcess--;
-      for(let i =0; i< this.counterProcess;i++) {
-        list.push(this.segmentProcess[i]);
-      }
-      this.segmentProcessSubject.next(list)
 
+    let list = [];
+    if (this.toShow == "ingredients") {
+
+      list = this.segmentIngredientsSubject.value.filter((element) => {
+        return element.blockId != param;
+      });
+      console.log(list)
+      this.segmentIngredientsSubject.next(list)
+    } else {
+      list = this.segmentProcessSubject.value.filter((element) => {
+        return element.blockId != param;
+      });
+      console.log(list)
+      this.segmentProcessSubject.next(list)
     }
   }
 
   changeView(param) {
-    this.toShow=param;
-  
-    console.log("mostrando: "+this.toShow)
+    this.toShow = param;
+
+    console.log("mostrando: " + this.toShow)
   }
 
-  setWarnMsg(durationObject,timeObject) {
-    if(!durationObject.value) {
+  setWarnMsg(durationObject, timeObject) {
+    if (!durationObject.value) {
       this.warnmsg = "Cuidado la duracion se pondrá en 0 pues no se ha asignado ningun valor"
-    } else if(!timeObject.value) { 
+    } else if (!timeObject.value) {
       this.warnmsg = "Cuidado la marca temporal se asignara a segundos pues no se ha asignado ningun valor"
-    } else if(this.emptyBlock(this.segmentIngredients)) {
+    } else if (this.emptyBlock(this.segmentIngredients)) {
       this.warnmsg = "Cuidado en esta receta existen bloques vacios en las recetas,los cuales no se subirán"
-    } else if(this.emptyBlock(this.segmentProcess)) {
+    } else if (this.emptyBlock(this.segmentProcess)) {
       this.warnmsg = "Cuidado en esta receta existen bloques vacios en el proceso,los cuales no se subirán"
-    
+
     } else {
       this.warnmsg = ""
     }
   }
-  setDuration(timeObject,durationObject) {
+  setDuration(timeObject, durationObject) {
     let duration = 0;
-    switch(timeObject.value) {
+    switch (timeObject.value) {
       case "min":
         duration = parseInt(durationObject.value)
-      break;
+        break;
       case "hor":
         duration = durationObject.value * 60
-      break;
+        break;
       default:
-        if(durationObject.value) {
+        if (durationObject.value) {
           duration = parseInt(durationObject.value)
         }
 
@@ -113,31 +116,31 @@ export class RecipeContentPage implements OnInit {
     return duration;
   }
   // funcion de añadir recetas
-  onAddRecipe(titleObject,durationObject,timeObject) {
+  onAddRecipe(titleObject, durationObject, timeObject) {
     // mostramos los datos
 
 
     //console.log(this.emptyBlock(this.segmentIngredients));
     // comprobamos si alguno de los campos esta vacio
-    this.setWarnMsg(durationObject,timeObject)
+    this.setWarnMsg(durationObject, timeObject)
 
     // calculamos la duracion
-    let duration = this.setDuration(timeObject,durationObject)
+    let duration = this.setDuration(timeObject, durationObject)
 
     // limpiamos los objetos
-    let ingredients = this.cleanObject(this.segmentIngredients);
-    let process = this.cleanObject(this.segmentProcess);
+    let ingredients = this.cleanObject(this.segmentIngredientsSubject.value);
+    let process = this.cleanObject(this.segmentProcessSubject.value);
 
     // mostramos alert
-    this.presentAlert(titleObject.innerHTML,duration,ingredients,process)
+    this.presentAlert(titleObject.innerHTML, duration, ingredients, process)
   }
-  
+
 
   cleanObject(param) {
     const empty = (element) => ((!element.hasOwnProperty("title")) || (!element.hasOwnProperty("content")) || (element.title == "" || element.content == ""));
-    let a = param.filter((element)=>!empty(element));
+    let a = param.filter((element) => !empty(element));
     return a;
-   
+
   }
 
   emptyBlock(array) {
@@ -147,7 +150,7 @@ export class RecipeContentPage implements OnInit {
   }
 
   // pressentar alert de confirmacion
-  async presentAlert(title,duration,ingredients,process) {
+  async presentAlert(title, duration, ingredients, process) {
     const alert = await this.alertController.create({
       header: '¿Has terminado de escribir la receta?',
       subHeader: '¿Quieres subirla?',
@@ -157,22 +160,22 @@ export class RecipeContentPage implements OnInit {
           text: 'No',
           role: 'cancel',
           handler: () => {
-           // this.handlerMessage = 'Alert canceled';
-          
+            // this.handlerMessage = 'Alert canceled';
+
           },
         },
         {
           text: 'Si',
           role: 'confirm',
           handler: () => {
-            var recipe : Recipe = {
+            var recipe: Recipe = {
               title: title,
               duration: duration,
               process: process,
               ingredients: ingredients
-             }
-             console.log(recipe);
-            this.recipeSvc.createRecipe(recipe);
+            }
+            console.log(recipe);
+            //this.recipeSvc.createRecipe(recipe);
           },
         },
       ],
@@ -187,7 +190,7 @@ export class RecipeContentPage implements OnInit {
     console.log(param)
   }
 
-  expandItem(object,accordion) {
+  expandItem(object, accordion) {
     console.log(object);
     accordion.readonly = object.state
     this.cdr.detectChanges()

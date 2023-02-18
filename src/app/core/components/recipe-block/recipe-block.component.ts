@@ -34,19 +34,19 @@ export class RecipeBlockComponent implements OnInit {
   }
 
   stopExpand(uid,input,text) {
-    console.log("stop expand")
+   // console.log("stop expand")
     this.onExpandItem.emit({state: true})
     this.changeItem(uid,input,text);
   }
 
   startExpand() {
-    console.log("start expand");
+    //console.log("start expand");
     this.onExpandItem.emit({state: false})
   }
 
   changeItem(uid,input,text) {
-    console.log(input.value);
-    console.log(text.value);
+    //console.log(input.value);
+    //console.log(text.value);
     this.item.title = input.value
     this.item.content.text = text.value;
     this.item.content.image = "";

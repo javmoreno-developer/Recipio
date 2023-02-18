@@ -1,4 +1,5 @@
 export interface recipeBlock {
+    blockId: number,
     title:string,
     content: recipeBlockContent
 }

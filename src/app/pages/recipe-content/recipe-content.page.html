@@ -37,7 +37,7 @@
     
     <!-- Ingredients -->
     <ion-accordion-group expand="inset" [readonly]="true" [hidden]="!(toShow == 'ingredients')"  #accordion>
-        <app-recipe-block [position]="segmentIngredients.indexOf(i)" [item]="i" *ngFor="let i of segmentIngredients$ | async" (onExpandItem)="expandItem($event,accordion)" (onDeleteItem)="deleteItem($event)" (onUpdateItem)="updateItem($event)"></app-recipe-block>
+        <app-recipe-block [position]="i.blockId" [item]="i" *ngFor="let i of segmentIngredients$ | async" (onExpandItem)="expandItem($event,accordion)" (onDeleteItem)="deleteItem($event)" (onUpdateItem)="updateItem($event)"></app-recipe-block>
     </ion-accordion-group>
 
     <!-- Process -->
