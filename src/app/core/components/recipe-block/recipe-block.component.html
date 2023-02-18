@@ -1,3 +1,12 @@
-<p>
-  recipe-block works!
-</p>
+<div class="container_accordion" >
+    <ion-icon name="close-circle-outline" (click)="onDelete(item)"></ion-icon>
+    <ion-accordion value="accordion_{{position}}"  >
+      <ion-item slot="header" color="accordion">
+        <!--<ion-label contenteditable>First Accordion</ion-label>-->
+        <ion-input placeholder="Escribe un titulo" debounce="1000" #input (click)="startExpand()" (ionChange)="stopExpand(item.uid,input,text)"></ion-input>
+      </ion-item>
+      <div class="ion-padding" slot="content" >
+        <ion-textarea #text (ionBlur)="stopExpand(item.uid,input,text)"></ion-textarea>
+      </div>
+    </ion-accordion>
+</div>

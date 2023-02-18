@@ -18,11 +18,11 @@ export class BookService {
   
 
   constructor(private firebase:FirebaseService) {    
-    this.unsubscr = this.firebase.subscribeToCollection('books',this._bookSubject, this.mapBook);
+    this.unsubscr = this.firebase.subscribeToCollection('book',this._bookSubject, this.mapBook);
   }
 
   public getSubscritpionByUser(subject: BehaviorSubject<any[]>, condition:string): Unsubscribe {
-    return this.firebase.subscribeToCollectionWithQueryUser('books', subject, this.mapBook, condition);
+    return this.firebase.subscribeToCollectionWithQueryUser('book', subject, this.mapBook, condition);
   }
 
    private mapBook(doc:DocumentData){

@@ -15,6 +15,7 @@ import { ItemCardComponent } from './components/item-card/item-card.component';
 import { DetailItemModalComponent } from './components/detail-item-modal/detail-item-modal.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { RecipeBlockComponent } from './components/recipe-block/recipe-block.component';
 
 registerLocaleData(es);
 registerLocaleData(en);
@@ -27,6 +28,7 @@ registerLocaleData(en);
     DetailItemModalComponent,
     SigninComponent,
     SignupComponent,
+    RecipeBlockComponent,
   ],
   imports: [
     CommonModule,
@@ -49,6 +51,7 @@ registerLocaleData(en);
     DetailItemModalComponent,
     SigninComponent,
     SignupComponent,
+    RecipeBlockComponent,
   ],
   providers: [
     {

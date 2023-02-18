@@ -15,7 +15,6 @@ export class SigninComponent implements OnInit {
 
   constructor(
     private formBuilder:FormBuilder,
-    private modalCtrl:ModalController,
   ) { 
 
     this.form = this.formBuilder.group({

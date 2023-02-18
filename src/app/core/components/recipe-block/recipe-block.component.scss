@@ -1,0 +1,47 @@
+
+ion-icon {
+  cursor: pointer;
+  font-size: 25px;
+
+}
+
+.fake-textarea {
+  border: 1px solid black;
+  width: 30rem;
+  padding: .5rem;
+  min-height: 3rem;
+  display: block;
+}
+.fake-textarea:empty::before {
+  position: absolute;
+  content: "Escribe aquí...";
+}
+
+ion-accordion {
+    border-top-left-radius: 20px !important;
+    border-top-right-radius: 20px !important;
+    border-bottom-left-radius: 20px !important;
+    border-bottom-right-radius: 20px !important;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    width: 90%;
+    --border-radius: 20px;
+    ion-item {
+      --border-width: 0px;
+    }
+   
+
+}
+.container_accordion {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  
+}
+  .ion-color-accordion {
+    --ion-color-base: var(--ion-color-white);
+  }
+  
+  div[slot="content"] {
+    background: rgba(var(--ion-color-white), 0.25)
+  }

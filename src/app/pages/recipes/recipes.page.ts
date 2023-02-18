@@ -19,13 +19,13 @@ export class RecipesPage implements OnInit {
     let id = this.route.snapshot.params['id'];
     this.name = bookSvc.getBook(id);
 
-    this.recipeSvc.init();
+    //this.recipeSvc.init();
    }
 
   ngOnInit() {}
 
   getAllRecipes() {
-    return this.recipeSvc.getAll()
+    //return this.recipeSvc.getAll()
   }
 
   openModal() {}

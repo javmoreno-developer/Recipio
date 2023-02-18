@@ -2,7 +2,56 @@
   <section id="first_layer">
     <ion-icon name="arrow-back-outline"></ion-icon>
     <ion-avatar>
-      <ion-icon name="checkmark-outline"></ion-icon>
+      <ion-icon name="checkmark-outline" (click)="onAddRecipe(title,duration,type_time)"></ion-icon>
     </ion-avatar>
   </section>
+  <section id="second_layer">
+    <div id="recipe_title_container">
+      <h2 contenteditable #title>Salad🥗</h2>
+      <!--<h3 contenteditable #duration>9 min</h3>-->
+      <div id="duration_container">
+        <ion-input placeholder="Duracion" type="number" #duration></ion-input>
+        <ion-list>
+          <ion-item>
+            <ion-select placeholder="Select" #type_time>
+              <ion-select-option value="min">Minutos</ion-select-option>
+              <ion-select-option value="hor">Horas</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+    <div id="process_container">
+
+
+      <ion-segment value="custom">
+        <ion-segment-button value="custom" (click)="changeView('ingredients')">
+          <ion-label>Ingredients</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="segment" (click)="changeView('process')">
+          <ion-label>Process</ion-label>
+        </ion-segment-button>
+
+      </ion-segment>
+    </div>
+    
+    <!-- Ingredients -->
+    <ion-accordion-group expand="inset" [readonly]="true" [hidden]="!(toShow == 'ingredients')"  #accordion>
+        <app-recipe-block [position]="segmentIngredients.indexOf(i)" [item]="i" *ngFor="let i of segmentIngredients$ | async" (onExpandItem)="expandItem($event,accordion)" (onDeleteItem)="deleteItem($event)" (onUpdateItem)="updateItem($event)"></app-recipe-block>
+    </ion-accordion-group>
+
+    <!-- Process -->
+    <ion-accordion-group expand="inset" [readonly]="true" [hidden]="!(toShow == 'process')" #accordion2>
+      <app-recipe-block [position]="segmentProcess.indexOf(i)" [item]="i" *ngFor="let i of segmentProcess$ | async" (onExpandItem)="expandItem($event,accordion2)" (onDeleteItem)="deleteItem($event)" (onUpdateItem)="updateItem($event)"></app-recipe-block>
+    </ion-accordion-group>
+
+
+  </section>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end" (click)="newElement()">
+    <ion-fab-button color="dark">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+
+  </ion-fab>
 </div>

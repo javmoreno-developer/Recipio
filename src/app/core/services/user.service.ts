@@ -27,7 +27,7 @@ export class UserService {
   private async init(){
     this.firebase.isLogged$.subscribe(async (logged)=>{
       if(logged){
-        this._user.next((await this.firebase.getDocument('users', this.firebase.getUser().uid)).data as User);
+        this._user.next((await this.firebase.getDocument('user', this.firebase.getUser().uid)).data as User);
         this.router.navigate([this.goTo]);
       }
       this._isLogged.next(logged);
@@ -63,7 +63,7 @@ export class UserService {
       if(!this._isLogged.value){
         try {
           var _user:UserCredential = (await this.firebase.createUserWithEmailAndPassword(data.email, data.password));
-          await this.firebase.createDocumentWithId('users', 
+          await this.firebase.createDocumentWithId('user', 
             {
               uid:_user.user.uid,
               nickname:data.nickname, 

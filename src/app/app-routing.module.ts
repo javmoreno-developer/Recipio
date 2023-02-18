@@ -36,7 +36,6 @@ const routes: Routes = [
   {
     path: 'recipeContent',
     loadChildren: () => import('./pages/recipe-content/recipe-content.module').then( m => m.RecipeContentPageModule),
-    canActivate:[AuthGuard]
   },
 
 
