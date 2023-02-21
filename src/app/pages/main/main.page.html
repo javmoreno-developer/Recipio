@@ -15,7 +15,7 @@
    <ion-grid>
       <ion-row>
         <ion-col size="12" size-sm="3" *ngFor="let book of list$ | async">
-          <app-item-card [item]="{book: book, recipe: false}" (onDetail)="callDetailModal($event)"></app-item-card>
+          <app-item-card [item]="{book: book}" (onDetail)="callDetailModal($event)"></app-item-card>
         </ion-col>
       </ion-row>
    </ion-grid>
@@ -31,5 +31,5 @@
     </ion-fab-button>
    
   </ion-fab>
-  <ion-button (click)="createRecipe()">Crear receta</ion-button>
+
 </ion-content>

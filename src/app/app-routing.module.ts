@@ -9,7 +9,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'recipeContent',
+    redirectTo: 'main',
     pathMatch: 'full'
   },
   {

@@ -3,6 +3,7 @@ import { AlertController, ModalController } from '@ionic/angular';
 import { BehaviorSubject } from 'rxjs';
 import { Recipe } from 'src/app/core/models/recipe';
 import { recipeBlock } from 'src/app/core/models/recipe-block';
+import { DataService } from 'src/app/core/services/data.service';
 import { RecipeService } from 'src/app/core/services/recipe.service';
 
 @Component({
@@ -16,8 +17,8 @@ export class RecipeContentPage implements OnInit {
   segmentIngredients: recipeBlock[] = [{ blockId: 0, title: "", content: { text: "" } }, { blockId: 1, title: "", content: { text: "" } }]
   segmentProcess: recipeBlock[] = [{ blockId: 0, title: "", content: { text: "" } }]
 
-  counterIngredients = this.segmentIngredients.length;
-  counterProcess = this.segmentProcess.length;
+ 
+  book_id = "";
 
   toShow = "ingredients"
   warnmsg = ""
@@ -28,10 +29,15 @@ export class RecipeContentPage implements OnInit {
 
   // Proceso
   private segmentProcessSubject = new BehaviorSubject<recipeBlock[]>(this.segmentProcess)
-  segmentProcess$ = this.segmentProcessSubject.asObservable()
+  segmentProcess$ = this.segmentProcessSubject.asObservable();
 
-  constructor(private cdr: ChangeDetectorRef, private alertController: AlertController, private recipeSvc: RecipeService) {
+  counterIngredients = this.segmentIngredientsSubject.value.length;
+  counterProcess = this.segmentProcessSubject.value.length;
+
+  constructor(private cdr: ChangeDetectorRef, private alertController: AlertController, private recipeSvc: RecipeService,private dataSvc: DataService) {
     //console.log("mostrando: "+this.toShow)
+    // pillo el id del libro
+    this.book_id = this.dataSvc.getData()
   }
 
   ngOnInit() { }
@@ -59,8 +65,6 @@ export class RecipeContentPage implements OnInit {
   }
 
   deleteItem(param) {
-    console.log(param);
-    console.log(this.segmentIngredientsSubject.value.length);
 
     let list = [];
     if (this.toShow == "ingredients") {
@@ -96,9 +100,9 @@ export class RecipeContentPage implements OnInit {
       this.warnmsg = "Cuidado la duracion se pondrá en 0 pues no se ha asignado ningun valor"
     } else if (!timeObject.value) {
       this.warnmsg = "Cuidado la marca temporal se asignara a segundos pues no se ha asignado ningun valor"
-    } else if (this.emptyBlock(this.segmentIngredients)) {
+    } else if (this.emptyBlock(this.segmentIngredientsSubject.value)) {
       this.warnmsg = "Cuidado en esta receta existen bloques vacios en las recetas,los cuales no se subirán"
-    } else if (this.emptyBlock(this.segmentProcess)) {
+    } else if (this.emptyBlock(this.segmentProcessSubject.value)) {
       this.warnmsg = "Cuidado en esta receta existen bloques vacios en el proceso,los cuales no se subirán"
 
     } else {
@@ -176,13 +180,14 @@ export class RecipeContentPage implements OnInit {
           role: 'confirm',
           handler: () => {
             var recipe: Recipe = {
+              bookId: this.book_id,
               title: title,
               duration: duration,
               process: process,
               ingredients: ingredients
             }
             console.log(recipe);
-            //this.recipeSvc.createRecipe(recipe);
+            this.recipeSvc.createRecipe(recipe);
           },
         },
       ],

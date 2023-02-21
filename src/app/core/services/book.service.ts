@@ -32,7 +32,6 @@ export class BookService {
       docId: doc["id"],
       title: doc["data"]().title,
       description: doc["data"]().description,
-      recipes: doc["data"]().recipes
     };
 
   }
@@ -81,7 +80,12 @@ export class BookService {
 
   async createBook(book: Book) {
       try {
-        await this.firebase.createDocument("books",book);
+        await this.firebase.createDocument("book",book).then((docRef)=>{
+          console.log("Document written with ID: ", docRef);
+          book.docId = docRef
+          this.updateBook(book)
+        });
+
       } catch(error) {
         console.log(error);
       }
@@ -89,7 +93,7 @@ export class BookService {
 
   async updateBook(book:Book) {
     try {
-      await this.firebase.updateDocument('books', book.docId, book);  
+      await this.firebase.updateDocument('book', book.docId, book);  
     } catch (error) {
       console.log(error);
     } 
@@ -117,7 +121,7 @@ export class BookService {
 
   async deleteBook(book: Book) {
     try {
-      await this.firebase.deleteDocument("books",book.docId)
+      await this.firebase.deleteDocument("book",book.docId)
     } catch(error) {
       console.log(error);
     }
@@ -132,14 +136,14 @@ export class BookService {
   getMyBooks(value) {
     return new Promise<Book[]>(async (resolve, reject)=>{
       try {
-        var books = (await this.firebase.getDocumentsBy('books', "uid", value)).map<Book>(doc => {
+        var books = (await this.firebase.getDocumentsBy('book', "uid", value)).map<Book>(doc => {
           return {
             id:0,
             docId:doc.id,
             aw: "prueba",
             title: doc["data"]['title'],
             description: doc["data"]['description'],
-            recipes: doc["data"]['recipes']
+ 
           }
         });
         resolve(books);  

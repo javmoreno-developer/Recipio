@@ -46,6 +46,7 @@ export abstract class FirebaseService{
   public abstract deleteDocument(collectionName:string, docId:string):Promise<void>;
   public abstract subscribeToCollection(collectionName, subject: BehaviorSubject<any[]>, mapFunction:(el:DocumentData)=>any):Unsubscribe
   public abstract subscribeToCollectionWithQueryUser(collectionName, subject: BehaviorSubject<any[]>, mapFunction:(el:DocumentData)=>any,condition: string):Unsubscribe
+  public abstract subscribeToCollectionWithQueryBook(collectionName, subject: BehaviorSubject<any[]>, mapFunction:(el:DocumentData)=>any,condition: string):Unsubscribe
   public abstract setUserAndEmail(uid:string, email:string);
   public abstract createUserWithEmailAndPassword(email:string, password:string):Promise<UserCredential>;
   public abstract connectUserWithEmailAndPassword(email:string, password:string):Promise<UserCredential>;

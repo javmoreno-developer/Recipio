@@ -1,9 +1,9 @@
 <div id="item_book_container" (click)="callDetail()" *ngIf="recipe == false">
   <h1>{{data.title}}</h1>
-  <p *ngIf="recipe == false">{{data.recipes.length}} recipes</p>
+ 
 </div>
 
 <div id="item_recipe_container" (click)="callDetail()" *ngIf="recipe == true">
   <h1>{{data.title}}</h1>
-  <ion-chip>{{data.duration}}</ion-chip>
+  <ion-chip>{{data.duration}} minutos</ion-chip>
 </div>

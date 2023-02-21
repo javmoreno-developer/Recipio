@@ -13,20 +13,13 @@ export class ItemCardComponent implements OnInit {
   @Output() onDetail = new EventEmitter();
 
   @Input("item") set item(n: any) {
-   
-    /*if("name" in n) {
-      this.data = n;
+    if("book" in n) {
+      this.data = n.book;
+      this.recipe = false;
     } else {
+      this.data = n.recipe
       this.recipe = true;
-      this.data = n; 
     }
-
-    console.log(n);
-    console.log(this.recipe);*/
-    //console.log(n);
-    this.data = n.book;
-    //console.log(this.data);
-    this.recipe = n.recipe
   }
 
 

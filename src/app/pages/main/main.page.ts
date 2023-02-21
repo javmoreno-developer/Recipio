@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { DetailItemModalComponent } from 'src/app/core/components/detail-item-modal/detail-item-modal.component';
 import { ModalBookComponent } from 'src/app/core/components/modal-book/modal-book.component';
@@ -38,9 +38,9 @@ export class MainPage implements OnInit, OnDestroy {
     let uid = "";
 
     await this.userSvc.user$.subscribe(user =>{
-      console.log(user);
+  
       uid = user.uid
-      console.log(uid);
+ 
     })
     this.unsubscr = this.bookSvc.getSubscritpionByUser(this._list, uid);
 
@@ -63,13 +63,13 @@ export class MainPage implements OnInit, OnDestroy {
     var uid = "";
 
     await this.userSvc.user$.subscribe(user =>{
-      console.log(user);
+      //console.log(user);
       uid = user.uid
     });
 
     modal.onDidDismiss().then(result => {
       
-     console.log(result);
+     //console.log(result);
      if(result && result.data) {
       switch(result.data.mode) {
         case "crear":
@@ -107,24 +107,21 @@ export class MainPage implements OnInit, OnDestroy {
    
       switch(result.role) {
         case "see":
-          console.log(result);
-          console.log(result.role);
-          let id = result.data.book;
+          
+          let id = result.data.book.docId;
+          this.router.navigate([`recipes/${id}`])
           break;
         case "delete":
-          console.log(result);
+          
           this.bookSvc.deleteBook(result.data.book);
           break;
         case "update":
-          console.log(result);
+         
           this.openModal(result.data.book);
       }
     });
   }
 
 
-  createRecipe() {
-    this.router.navigate(['recipeContent'])
-
-  }
+  
 }

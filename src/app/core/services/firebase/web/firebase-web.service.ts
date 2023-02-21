@@ -186,6 +186,12 @@ export class FirebaseWebService extends FirebaseService implements OnDestroy {
     }, error => { });
   }
 
+  public subscribeToCollectionWithQueryBook(collectionName, subject: BehaviorSubject<any[]>, mapFunction: (el: DocumentData) => any, condition: string): Unsubscribe {
+    return onSnapshot(query(collection(this.db, collectionName),where("bookId","==",condition)), (snapshot) => {
+      subject.next(snapshot.docs.map<any>(doc => mapFunction(doc)));
+    }, error => { });
+  }
+
   public async signOut(signInAnon: boolean = false) {
     try {
       await this.auth.signOut();

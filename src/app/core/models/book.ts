@@ -3,5 +3,4 @@ export interface Book {
     docId: string,
     title: String,
     description: String,
-    //count_recipe: number
 }

@@ -13,8 +13,8 @@ export class UserService {
   public isLogged$ = this._isLogged.asObservable();
   private _user = new BehaviorSubject<User>(null);
   public user$ = this._user.asObservable();
-  //public goTo = "main";
-  public goTo = "recipeContent";
+  public goTo = "main";
+  //public goTo = "recipeContent";
   
   constructor(
     private firebase:FirebaseService,
