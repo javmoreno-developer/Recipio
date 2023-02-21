@@ -27,7 +27,7 @@
     <div id="detail_operations">
       <h3>{{"modal.ope_msg" | translate}}</h3>
       <ion-button id="detail_ope_upd">{{"modal.ope_upd_rec" | translate}}</ion-button>
-      <p id="detail_ope_del">{{"modal.ope_del_rec" | translate}} <ion-icon name="trash-outline"></ion-icon></p>
+      <p id="detail_ope_del" (click)="modalOperation('deleteRecipe')">{{"modal.ope_del_rec" | translate}} <ion-icon name="trash-outline"></ion-icon></p>
     </div>
   </div>
   <div id="third_column">

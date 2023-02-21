@@ -28,7 +28,9 @@ export class UserService {
     this.firebase.isLogged$.subscribe(async (logged)=>{
       if(logged){
         this._user.next((await this.firebase.getDocument('user', this.firebase.getUser().uid)).data as User);
-        this.router.navigate([this.goTo]);
+        if (this.router.url == "/login") {
+          this.router.navigate([this.goTo]);
+        }
       }
       this._isLogged.next(logged);
     });

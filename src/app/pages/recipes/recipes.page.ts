@@ -63,6 +63,14 @@ export class RecipesPage implements OnInit,OnDestroy {
     modal.onDidDismiss().then(result => {
      console.log(result);
      console.log(result.role);
+     switch(result.role) {
+      case "deleteRecipe":
+        console.log(result.data.item);
+        this.recipeSvc.deleteRecipe(result.data.item.docId)
+      break;
+     }
+      
+      
       
     });
   }

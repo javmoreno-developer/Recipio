@@ -26,7 +26,6 @@ export class BookService {
   }
 
    private mapBook(doc:DocumentData){
-    //console.log(doc['data']());
     return {
       id:0,
       docId: doc["id"],

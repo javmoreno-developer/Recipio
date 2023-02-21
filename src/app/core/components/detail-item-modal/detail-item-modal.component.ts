@@ -13,6 +13,7 @@ export class DetailItemModalComponent implements OnInit {
   data: any | undefined;
   recipeInput: Boolean = false
 
+
   @Input("book") set book(n: Book) {
     this.data = n;
   }
@@ -22,21 +23,24 @@ export class DetailItemModalComponent implements OnInit {
     this.recipeInput = true;
   }
 
- 
 
-  constructor(private modal:ModalController) { }
 
-  ngOnInit() {}
+
+  constructor(private modal: ModalController) { }
+
+  ngOnInit() { }
 
   modalOperation(param: string) {
     console.log(param);
-    this.modal.dismiss({book: this.data},param)
+
+    this.modal.dismiss({ item: this.data }, param)
+
   }
 
   closeModal() {
     this.modal.dismiss({});
   }
 
-  
+
 
 }

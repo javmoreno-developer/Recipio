@@ -79,6 +79,15 @@ async updateRecipe(recipe:Recipe) {
   } 
 }
 
+async deleteRecipe(id: string) {
+  console.log(id);
+  try {
+    await this.firebase.deleteDocument("recipe",id)
+  } catch(error) {
+    console.log(error);
+  }
+}
+
 
 
   

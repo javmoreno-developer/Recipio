@@ -108,16 +108,18 @@ export class MainPage implements OnInit, OnDestroy {
       switch(result.role) {
         case "see":
           
-          let id = result.data.book.docId;
+          let id = result.data.item.docId;
           this.router.navigate([`recipes/${id}`])
           break;
         case "delete":
           
-          this.bookSvc.deleteBook(result.data.book);
+          this.bookSvc.deleteBook(result.data.item);
           break;
         case "update":
          
-          this.openModal(result.data.book);
+          this.openModal(result.data.item);
+          break;
+        
       }
     });
   }
