@@ -1,0 +1,23 @@
+<div id="content-duration">
+    <ion-datetime presentation="time" [disabled]="!showDate" #date [(ngModel)]="myDate"></ion-datetime>
+    <div class="row_chip" id="first_row_chip">
+        <app-chip-time [object]="{time: '5 min', color: '#FFABC7', position: 0}" (onChipClick)="chipClick($event)"></app-chip-time>
+        <app-chip-time [object]="{time: '10 min', color: '#A2E3F6', position: 1}" (onChipClick)="chipClick($event)"></app-chip-time>
+        <app-chip-time [object]="{time: '20 min', color: '#63B995', position: 2}" (onChipClick)="chipClick($event)"></app-chip-time>
+        <app-chip-time [object]="{time: '30 min', color: '#736CED', position: 3}" (onChipClick)="chipClick($event)"></app-chip-time>
+    </div>    
+
+    
+    <div class="row_chip">
+        <app-chip-time [object]="{time: '1 h', color: '#FCD29F', position: 4}" (onChipClick)="chipClick($event)"></app-chip-time>
+        <app-chip-time [object]="{time: '2 h', color: '#CF5C36', position: 5}" (onChipClick)="chipClick($event)"></app-chip-time>
+    </div>  
+    
+    <div class="row">
+        <ion-button (click)="operation('submit',date)">Enviar</ion-button>
+        <ion-button (click)="operation('cancell',date)">Cancelar</ion-button>
+    </div>
+
+</div>
+
+

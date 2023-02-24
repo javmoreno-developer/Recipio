@@ -1,3 +1,5 @@
+
+
 #main_content {
     background: var(--ion-color-background);
     display: flex;
@@ -52,18 +54,20 @@
             padding: 0;
         }
         #duration_container {
+            
             display: flex;
             width: 70%;
             align-items: center;
-            ion-list {
-                background: var(--ion-color-background);
+           
+            #openDur {
+                --background: var(--ion-color-background);
                 border:2px solid;
-                height: 50%;
-                padding-left: 16px;
-                padding-right: 16px;
+                
+                --padding-left: 16px;
+                --padding-right: 16px;
+                --border-radius: 20px;
                 border-radius: 20px;
-                display: flex;
-                align-items: center;
+                color: black;
             }
             ion-item {
                 --background:var(--ion-color-background)

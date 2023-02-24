@@ -17,7 +17,6 @@ export class RecipeBlockComponent implements OnInit {
 
   @Input("position") set pos(n: number) {
     this.position = n;
-    console.log("posicion: "+this.position);
   }
 
 

@@ -1,6 +1,8 @@
 import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { AlertController, ModalController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { AlertController, ModalController, NavController } from '@ionic/angular';
 import { BehaviorSubject } from 'rxjs';
+import { DurationComponent } from 'src/app/core/components/duration/duration.component';
 import { Recipe } from 'src/app/core/models/recipe';
 import { recipeBlock } from 'src/app/core/models/recipe-block';
 import { DataService } from 'src/app/core/services/data.service';
@@ -13,7 +15,13 @@ import { RecipeService } from 'src/app/core/services/recipe.service';
 })
 export class RecipeContentPage implements OnInit {
 
+  //valores por defecto
+  titleRecipe: string = "Salad🥗"
 
+  recipeInput: Recipe;
+
+
+  // valores por defecto de los observables
   segmentIngredients: recipeBlock[] = [{ blockId: 0, title: "", content: { text: "" } }, { blockId: 1, title: "", content: { text: "" } }]
   segmentProcess: recipeBlock[] = [{ blockId: 0, title: "", content: { text: "" } }]
 
@@ -22,6 +30,8 @@ export class RecipeContentPage implements OnInit {
 
   toShow = "ingredients"
   warnmsg = ""
+  durationTotal = 0
+  durationMsg = ""
 
   // Ingredientes
   private segmentIngredientsSubject = new BehaviorSubject<recipeBlock[]>(this.segmentIngredients)
@@ -34,10 +44,16 @@ export class RecipeContentPage implements OnInit {
   counterIngredients = this.segmentIngredientsSubject.value.length;
   counterProcess = this.segmentProcessSubject.value.length;
 
-  constructor(private cdr: ChangeDetectorRef, private alertController: AlertController, private recipeSvc: RecipeService,private dataSvc: DataService) {
-    //console.log("mostrando: "+this.toShow)
+  constructor(private cdr: ChangeDetectorRef, private alertController: AlertController,private modalCtr: ModalController, private recipeSvc: RecipeService,private dataSvc: DataService,private navController: NavController) {
     // pillo el id del libro
     this.book_id = this.dataSvc.getData()
+    //console.log(this.dataSvc.getUpdate());
+    if(this.dataSvc.getUpdate()){
+      console.log(this.dataSvc.getRecipe());
+      this.recipeInput = this.dataSvc.getRecipe()
+      this.titleRecipe = this.recipeInput.title
+      this.durationTotal = this.recipeInput.duration
+    }
   }
 
   ngOnInit() { }
@@ -95,11 +111,9 @@ export class RecipeContentPage implements OnInit {
     console.log("mostrando: " + this.toShow)
   }
 
-  setWarnMsg(durationObject, timeObject) {
-    if (!durationObject.value) {
+  setWarnMsg(duration) {
+    if (!duration) {
       this.warnmsg = "Cuidado la duracion se pondrá en 0 pues no se ha asignado ningun valor"
-    } else if (!timeObject.value) {
-      this.warnmsg = "Cuidado la marca temporal se asignara a segundos pues no se ha asignado ningun valor"
     } else if (this.emptyBlock(this.segmentIngredientsSubject.value)) {
       this.warnmsg = "Cuidado en esta receta existen bloques vacios en las recetas,los cuales no se subirán"
     } else if (this.emptyBlock(this.segmentProcessSubject.value)) {
@@ -109,41 +123,24 @@ export class RecipeContentPage implements OnInit {
       this.warnmsg = ""
     }
   }
-  setDuration(timeObject, durationObject) {
-    let duration = 0;
-    switch (timeObject.value) {
-      case "min":
-        duration = parseInt(durationObject.value)
-        break;
-      case "hor":
-        duration = durationObject.value * 60
-        break;
-      default:
-        if (durationObject.value) {
-          duration = parseInt(durationObject.value)
-        }
 
-    }
-    return duration;
-  }
   // funcion de añadir recetas
-  onAddRecipe(titleObject, durationObject, timeObject) {
+  onAddRecipe(titleObject) {
     // mostramos los datos
 
 
     //console.log(this.emptyBlock(this.segmentIngredients));
     // comprobamos si alguno de los campos esta vacio
-    this.setWarnMsg(durationObject, timeObject)
+    this.setWarnMsg(this.durationTotal)
 
-    // calculamos la duracion
-    let duration = this.setDuration(timeObject, durationObject)
+
 
     // limpiamos los objetos
     let ingredients = this.cleanObject(this.segmentIngredientsSubject.value);
     let process = this.cleanObject(this.segmentProcessSubject.value);
 
     // mostramos alert
-    this.presentAlert(titleObject.innerHTML, duration, ingredients, process)
+    this.presentAlert(titleObject.innerHTML, this.durationTotal, ingredients, process)
   }
 
 
@@ -166,6 +163,7 @@ export class RecipeContentPage implements OnInit {
       header: '¿Has terminado de escribir la receta?',
       subHeader: '¿Quieres subirla?',
       message: this.warnmsg,
+      
       buttons: [
         {
           text: 'No',
@@ -182,7 +180,7 @@ export class RecipeContentPage implements OnInit {
             var recipe: Recipe = {
               bookId: this.book_id,
               title: title,
-              duration: duration,
+              duration: this.durationTotal,
               process: process,
               ingredients: ingredients
             }
@@ -203,8 +201,37 @@ export class RecipeContentPage implements OnInit {
   }
 
   expandItem(object, accordion) {
-    console.log(object);
+   // console.log(object);
     accordion.readonly = object.state
     this.cdr.detectChanges()
   }
+
+  goBack() {
+    this.navController.back();
+  }
+
+async openDur() {
+  const modal = await this.modalCtr.create({
+    component: DurationComponent,
+    cssClass: 'modalDatetime'
+  });
+
+  modal.present();
+
+  modal.onDidDismiss().then(result => {
+    switch(result.data.type) {
+      case "cancell":
+        console.log("cancelando");
+        break;
+      case "submit":
+        console.log("enviando");
+        console.log(result.data.content)
+        this.durationTotal = result.data.content;
+        this.durationMsg = result.data.msg;
+        break;
+    }
+  });
+}
+
+
 }

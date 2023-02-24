@@ -4,7 +4,7 @@ export interface Recipe {
     docId?: string,
     bookId?:String,
     title: string,
-    duration: string,
+    duration: number,
     process: Block[],
     ingredients: Block[],
 }

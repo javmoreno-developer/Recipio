@@ -1,24 +1,26 @@
 <div id="main_content">
   <section id="first_layer">
-    <ion-icon name="arrow-back-outline"></ion-icon>
+    <ion-icon name="arrow-back-outline" (click)="goBack()"></ion-icon>
     <ion-avatar>
-      <ion-icon name="checkmark-outline" (click)="onAddRecipe(title,duration,type_time)"></ion-icon>
+      <ion-icon name="checkmark-outline" (click)="onAddRecipe(title)"></ion-icon>
     </ion-avatar>
   </section>
   <section id="second_layer">
     <div id="recipe_title_container">
-      <h2 contenteditable #title>Salad🥗</h2>
+      <h2 contenteditable #title>{{titleRecipe}}</h2>
       <!--<h3 contenteditable #duration>9 min</h3>-->
       <div id="duration_container">
-        <ion-input placeholder="Duracion" type="number" #duration></ion-input>
+        <ion-button id="openDur" (click)="openDur()">{{durationMsg == "" ? "Duracion" : durationMsg }}</ion-button>
+        <!--<ion-input placeholder="Duracion" type="number" #duration value="{{durationRecipe}}"></ion-input>
         <ion-list>
           <ion-item>
-            <ion-select placeholder="Select" #type_time>
+            <ion-select placeholder="Select" #type_time selected="true">
               <ion-select-option value="min">Minutos</ion-select-option>
               <ion-select-option value="hor">Horas</ion-select-option>
             </ion-select>
           </ion-item>
-        </ion-list>
+        </ion-list>-->
+       
       </div>
     </div>
     <div id="process_container">

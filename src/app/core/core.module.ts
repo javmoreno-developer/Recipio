@@ -16,6 +16,8 @@ import { DetailItemModalComponent } from './components/detail-item-modal/detail-
 import { SigninComponent } from './components/signin/signin.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { RecipeBlockComponent } from './components/recipe-block/recipe-block.component';
+import { DurationComponent } from './components/duration/duration.component';
+import { ChipTimeComponent } from './components/chip-time/chip-time.component';
 
 registerLocaleData(es);
 registerLocaleData(en);
@@ -29,6 +31,8 @@ registerLocaleData(en);
     SigninComponent,
     SignupComponent,
     RecipeBlockComponent,
+    DurationComponent,
+    ChipTimeComponent
   ],
   imports: [
     CommonModule,
@@ -52,6 +56,8 @@ registerLocaleData(en);
     SigninComponent,
     SignupComponent,
     RecipeBlockComponent,
+    DurationComponent,
+    ChipTimeComponent
   ],
   providers: [
     {

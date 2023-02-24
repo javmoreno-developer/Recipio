@@ -35,9 +35,9 @@ export class RecipesPage implements OnInit,OnDestroy {
   ngOnInit() {}
 
   getAllRecipes(param) {
-   console.log(param)
+   //console.log(param)
    this.unsubscr = this.recipeSvc.getSubscritpionByBook(this._list,param)
-   console.log(this.list$)
+   //console.log(this.list$)
   }
 
 
@@ -65,9 +65,13 @@ export class RecipesPage implements OnInit,OnDestroy {
      console.log(result.role);
      switch(result.role) {
       case "deleteRecipe":
-        console.log(result.data.item);
         this.recipeSvc.deleteRecipe(result.data.item.docId)
-      break;
+        break;
+      case "updateRecipe":
+        this.dataSvc.setUpdate(true);
+        this.dataSvc.setRecipe(result.data.item);
+        this.router.navigate(['recipeContent'])
+        break;
      }
       
       
@@ -77,7 +81,7 @@ export class RecipesPage implements OnInit,OnDestroy {
   
   createRecipe() {
     this.dataSvc.setData(this.book_id);
-
+    this.dataSvc.setUpdate(false);
     this.router.navigate(['recipeContent'])
 
   }

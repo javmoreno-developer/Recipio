@@ -1,0 +1,8 @@
+.nonSelected {
+    border:3px solid black;
+    --background: var(--ion-color-background)
+}
+
+.selected {
+    border: none;
+}
