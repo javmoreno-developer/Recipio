@@ -1,2 +1,2 @@
-<ion-searchbar showCancelButton="focus" class="custom" *ngIf="data == 'book'" placeholder="{{'searchbar.books_pla' | translate}}"></ion-searchbar>
-<ion-searchbar showCancelButton="focus" class="custom" *ngIf="data == 'recipe'" placeholder="{{'searchbar.recipes_pla' | translate}}"></ion-searchbar>
+<ion-searchbar animated="true" [debounce]="1000" (ionChange)="search($event)" showCancelButton="focus" class="custom" *ngIf="data == 'book'" placeholder="{{'searchbar.books_pla' | translate}}"></ion-searchbar>
+<ion-searchbar animated="true" [debounce]="1000" (ionChange)="search($event)" showCancelButton="focus" class="custom" *ngIf="data == 'recipe'" placeholder="{{'searchbar.recipes_pla' | translate}}"></ion-searchbar>

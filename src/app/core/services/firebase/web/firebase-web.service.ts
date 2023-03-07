@@ -192,6 +192,8 @@ export class FirebaseWebService extends FirebaseService implements OnDestroy {
     }, error => { });
   }
 
+
+
   public async signOut(signInAnon: boolean = false) {
     try {
       await this.auth.signOut();

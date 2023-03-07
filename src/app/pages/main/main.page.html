@@ -7,7 +7,7 @@
       <ion-icon name="settings-outline" [routerLink]="['/settings']"></ion-icon>
     </div>
   </div>
-  <app-search-bar [mode]="'book'"></app-search-bar>
+  <app-search-bar [mode]="'book'" (search)="searchBook($event)"></app-search-bar>
   <div id="main_books_content">
     <h3>{{"main.title" | translate}}</h3>
 

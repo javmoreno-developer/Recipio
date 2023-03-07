@@ -17,10 +17,15 @@ export class RecipesPage implements OnInit,OnDestroy {
 
   name: String;
 
-  private _list: BehaviorSubject<Recipe[]> = new BehaviorSubject<Recipe[]>([]);
-  list$ = this._list.asObservable();
+  private _listCopy: BehaviorSubject<Recipe[]> = new BehaviorSubject<Recipe[]>([]);
+  private _listOriginal: BehaviorSubject<Recipe[]> = new BehaviorSubject<Recipe[]>([]);
+
+  list$ = this._listOriginal.asObservable();
+  listCopy$ = this._listCopy.asObservable();
+
   book_id
   unsubscr;
+  unsubscrCopy;
 
   constructor(private router: Router,private recipeSvc: RecipeService,private route: ActivatedRoute,private bookSvc: BookService,private modalCtr: ModalController, private dataSvc:DataService) {
     this.book_id = router.url.split("/")[2];
@@ -30,14 +35,17 @@ export class RecipesPage implements OnInit,OnDestroy {
 
    ngOnDestroy(): void {
     this.unsubscr();
+    this.unsubscrCopy()
   }
 
   ngOnInit() {}
 
   getAllRecipes(param) {
-   //console.log(param)
-   this.unsubscr = this.recipeSvc.getSubscritpionByBook(this._list,param)
-   //console.log(this.list$)
+   this.unsubscr = this.recipeSvc.getSubscritpionByBook(this._listOriginal,param)
+   this.unsubscrCopy = this.recipeSvc.getSubscritpionByBook(this._listCopy,param)
+      
+   
+   
   }
 
 
@@ -84,6 +92,22 @@ export class RecipesPage implements OnInit,OnDestroy {
     this.dataSvc.setData(this.book_id);
     this.dataSvc.setUpdate(false);
     this.router.navigate(['recipeContent'])
+
+  }
+
+  searchRecipe(param) {
+   //this._listOriginal = this._listCopy
+   let filtererList = []
+
+   console.log(this._listCopy.value)
+   // filtrado
+   this._listCopy.value.forEach((item)=>{
+      if(item.title.includes(param.text)) {
+        filtererList.push(item)
+      }
+   });
+   console.log(filtererList)
+   this._listOriginal.next(filtererList)
 
   }
   

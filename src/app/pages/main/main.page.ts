@@ -18,18 +18,24 @@ export class MainPage implements OnInit, OnDestroy {
   //list: BehaviorSubject = new Observable<Book[]>;
   //mylistSubject: BehaviorSubject<Book[]> = new BehaviorSubject<Book[]>(this.list);
   //mylist$ = this.mylistSubject.asObservable()
-  private _list: BehaviorSubject<Book[]> = new BehaviorSubject<Book[]>([]);
-  list$ = this._list.asObservable();
+  private _listCopy: BehaviorSubject<Book[]> = new BehaviorSubject<Book[]>([]);
+  private _listOriginal: BehaviorSubject<Book[]> = new BehaviorSubject<Book[]>([]);
+
+  list$ = this._listOriginal.asObservable();
+  listCopy$ = this._listCopy.asObservable();
 
   unsubscr;
+  unsubscrCopy;
 
 
   emptyCards: boolean = false;
   constructor(private bookSvc: BookService,private modalCtr: ModalController,private router: Router,private userSvc: UserService) {
     this.getAllBooks();
   }
+
   ngOnDestroy(): void {
     this.unsubscr();
+    this.unsubscrCopy()
   }
 
   ngOnInit() {}
@@ -42,7 +48,8 @@ export class MainPage implements OnInit, OnDestroy {
       uid = user.uid
  
     })
-    this.unsubscr = this.bookSvc.getSubscritpionByUser(this._list, uid);
+    this.unsubscr = this.bookSvc.getSubscritpionByUser(this._listOriginal, uid);
+    this.unsubscrCopy = this.bookSvc.getSubscritpionByUser(this._listCopy, uid);
 
    
   }
@@ -124,6 +131,20 @@ export class MainPage implements OnInit, OnDestroy {
     });
   }
 
+  searchBook(param) {
+    let filtererList = []
+
+    // filtrado
+    this._listCopy.value.forEach((item)=>{
+       if(item.title.includes(param.text)) {
+         filtererList.push(item)
+       }
+    });
+    console.log(filtererList)
+    this._listOriginal.next(filtererList)
+ 
+   }
+  
 
   
 }

@@ -35,47 +35,7 @@ export class BookService {
 
   }
 
-  init() {
-    /*this.book_list = [
-      {
-        id: 0,
-        name: "Vegetables 🌮",
-        description: "desc",
-        count_recipe: 13
-      },
-      {
-        id: 1,
-        name: "Meat🥩",
-        description: "desc",
-        count_recipe: 18,
-      },
-      {
-        id: 2,
-        name: "Vegetables 🌮",
-        description: "desc",
-        count_recipe: 13
-      },
-      {
-        id: 3,
-        name: "Meat🥩",
-        description: "desc",
-        count_recipe: 18,
-      },
-      {
-        id: 4,
-        name: "Vegetables 🌮",
-        description: "desc",
-        count_recipe: 13
-      },
-      {
-        id: 5,
-        name: "Meat🥩",
-        description: "desc",
-        count_recipe: 18,
-      },
-
-    ]*/
-  }
+  init() {}
 
   async createBook(book: Book) {
       try {
@@ -97,26 +57,7 @@ export class BookService {
       console.log(error);
     } 
   }
- /*
-  async updatePerson(person:Person){
-    var _person = {
-      docId:person.docId,
-      first_name:person.first_name,
-      last_name:person.last_name,
-      nickname:person.nickname
-    };
-    if(person['pictureFile']){
-      var response = await this.uploadImage(person['pictureFile']);
-      _person['picture'] = response.image;
-    }
-    try {
-      await this.firebase.updateDocument('usuarios', person.docId, _person);  
-    } catch (error) {
-      console.log(error);
-    }
-      
-  }
- */
+
 
   async deleteBook(book: Book) {
     try {

@@ -27,6 +27,8 @@ export class RecipeService {
     return this.firebase.subscribeToCollectionWithQueryBook('recipe', subject, this.mapRecipe, condition);
   }
 
+
+
   private mapRecipe(doc:DocumentData){
     return {
       id:0,
@@ -70,6 +72,8 @@ getRecipeByBook(bookId: string) {
     }
   });
 }
+
+
 
 async updateRecipe(recipe:Recipe) {
   try {
