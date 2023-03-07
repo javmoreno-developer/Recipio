@@ -68,6 +68,7 @@ export class RecipesPage implements OnInit,OnDestroy {
         this.recipeSvc.deleteRecipe(result.data.item.docId)
         break;
       case "updateRecipe":
+        this.dataSvc.setData(this.book_id);
         this.dataSvc.setUpdate(true);
         this.dataSvc.setRecipe(result.data.item);
         this.router.navigate(['recipeContent'])

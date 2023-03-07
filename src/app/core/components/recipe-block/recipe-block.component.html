@@ -3,10 +3,10 @@
     <ion-accordion value="accordion_{{position}}"  >
       <ion-item slot="header" color="accordion">
         <!--<ion-label contenteditable>First Accordion</ion-label>-->
-        <ion-input placeholder="Escribe un titulo" debounce="1000" #input (click)="startExpand()" (ionChange)="stopExpand(item.uid,input,text)"></ion-input>
+        <ion-input placeholder="Escribe un titulo" value="{{item.title}}" debounce="1000" #input (click)="startExpand()" (ionChange)="stopExpand(input,text)"></ion-input>
       </ion-item>
       <div class="ion-padding" slot="content" >
-        <ion-textarea #text (ionBlur)="stopExpand(item.uid,input,text)"></ion-textarea>
+        <ion-textarea #text (ionBlur)="stopExpand(input,text)" placeholder="Escribe algo" value="{{item.content.text}}"></ion-textarea>
       </div>
     </ion-accordion>
 </div>

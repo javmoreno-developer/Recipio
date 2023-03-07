@@ -27,6 +27,7 @@ export class RecipeContentPage implements OnInit {
 
  
   book_id = "";
+  docId = "";
 
   toShow = "ingredients"
   warnmsg = ""
@@ -44,19 +45,25 @@ export class RecipeContentPage implements OnInit {
   counterIngredients = this.segmentIngredientsSubject.value.length;
   counterProcess = this.segmentProcessSubject.value.length;
 
-  constructor(private cdr: ChangeDetectorRef, private alertController: AlertController,private modalCtr: ModalController, private recipeSvc: RecipeService,private dataSvc: DataService,private navController: NavController) {
+  constructor(private cdr: ChangeDetectorRef, private alertController: AlertController,private modalCtr: ModalController, private recipeSvc: RecipeService,private dataSvc: DataService,private navController: NavController) {}
+
+  ngOnInit() { 
     // pillo el id del libro
     this.book_id = this.dataSvc.getData()
     //console.log(this.dataSvc.getUpdate());
     if(this.dataSvc.getUpdate()){
       console.log(this.dataSvc.getRecipe());
+      
       this.recipeInput = this.dataSvc.getRecipe()
+      this.docId = this.recipeInput.docId;
       this.titleRecipe = this.recipeInput.title
       this.durationTotal = this.recipeInput.duration
+      this.durationMsg = this.durationTotal + "min"
+      this.segmentIngredientsSubject.next(this.recipeInput.ingredients)
+      this.segmentProcessSubject.next(this.recipeInput.process)
+      
     }
   }
-
-  ngOnInit() { }
 
   newElement() {
     let list = [];
@@ -127,9 +134,6 @@ export class RecipeContentPage implements OnInit {
   // funcion de añadir recetas
   onAddRecipe(titleObject) {
     // mostramos los datos
-
-
-    //console.log(this.emptyBlock(this.segmentIngredients));
     // comprobamos si alguno de los campos esta vacio
     this.setWarnMsg(this.durationTotal)
 
@@ -178,6 +182,7 @@ export class RecipeContentPage implements OnInit {
           role: 'confirm',
           handler: () => {
             var recipe: Recipe = {
+              docId: this.docId,
               bookId: this.book_id,
               title: title,
               duration: this.durationTotal,
@@ -185,7 +190,11 @@ export class RecipeContentPage implements OnInit {
               ingredients: ingredients
             }
             console.log(recipe);
-            this.recipeSvc.createRecipe(recipe);
+            if(this.dataSvc.getUpdate()) {
+              this.recipeSvc.updateRecipe(recipe);
+            } else {
+              this.recipeSvc.createRecipe(recipe);
+            }
           },
         },
       ],

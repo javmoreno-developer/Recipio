@@ -8,8 +8,15 @@ import { recipeBlock } from '../../models/recipe-block';
 })
 export class RecipeBlockComponent implements OnInit {
 
-  item;
+  item:recipeBlock = {
+    blockId: 0,
+    title: "Escribe un titulo",
+    content: {
+      text: ""
+    }
+  };
   position;
+
 
   @Input("item") set data(n: recipeBlock) {
     this.item = n;
@@ -32,10 +39,10 @@ export class RecipeBlockComponent implements OnInit {
     this.onDeleteItem.emit(param);
   }
 
-  stopExpand(uid,input,text) {
+  stopExpand(input,text) {
    // console.log("stop expand")
     this.onExpandItem.emit({state: true})
-    this.changeItem(uid,input,text);
+    this.changeItem(input,text);
   }
 
   startExpand() {
@@ -43,7 +50,7 @@ export class RecipeBlockComponent implements OnInit {
     this.onExpandItem.emit({state: false})
   }
 
-  changeItem(uid,input,text) {
+  changeItem(input,text) {
     //console.log(input.value);
     //console.log(text.value);
     this.item.title = input.value
