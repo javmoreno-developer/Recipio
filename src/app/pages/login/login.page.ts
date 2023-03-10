@@ -35,12 +35,8 @@ export class LoginPage implements OnInit {
   }
 
   async signIn(param: UserLogin){
-    console.log("signin")
-
-    console.log(param);
     try {
       await this.user.login(param);
-      //await this.user.signOut();
       this.router.navigate(['main'], {replaceUrl:true});
       console.log("logueado");
     } catch (error) {

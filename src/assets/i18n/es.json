@@ -29,8 +29,8 @@
         "title":"Recetas pertenecientes al libro "
     },
     "placeholder": {
-        "name": "Apellidos",
-        "surname": "Nombre",
+        "name": "Nombre",
+        "surname": "Apellidos",
         "desc": "Descripcion",
         "nickname": "Nombre de usuario",
         "pass": "Contraseña",
