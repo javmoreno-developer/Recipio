@@ -12,6 +12,8 @@ import { createTranslateLoader } from './core/utils/js/translate';
 import { LocaleService } from './core/services/locale.service';
 import { FirebaseService } from './core/services/firebase/firebase-service';
 import { FirebaseWebService } from './core/services/firebase/web/firebase-web.service';
+import { Camera } from '@awesome-cordova-plugins/camera/ngx';
+import { File } from '@awesome-cordova-plugins/file/ngx';
 
 export function firebaseServiceFactory() {
   return  new FirebaseWebService();
@@ -58,6 +60,7 @@ export class LocaleId extends String {
       deps: [],
       useFactory: firebaseServiceFactory
     },
+    File
   ],
   bootstrap: [AppComponent],
 })

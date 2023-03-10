@@ -43,9 +43,7 @@ export class FirebaseWebService extends FirebaseService implements OnDestroy {
       }
       else {
         this._isLogged.next(false);
-        console.log(false);
       }
-      console.log(user);
     });
   }
 

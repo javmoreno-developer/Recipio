@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { User, UserCredential } from 'firebase/auth';
+import { getAuth, reauthenticateWithCredential, updateCurrentUser, updateEmail, updatePassword, updateProfile, User, UserCredential } from 'firebase/auth';
 import { BehaviorSubject } from 'rxjs';
-import { UserLogin, UserRegister } from '../models/user';
+import { UserLogin, UserRegister,User as myuser } from '../models/user';
 import { FirebaseService } from './firebase/firebase-service';
 
 @Injectable({
@@ -88,6 +88,47 @@ export class UserService {
     });
   }
 
+ async updateUser(user: myuser,picture: File) {
+
+  // subimos la imagen
+  if(picture) {
+    var response = await this.uploadImage(picture);
+    console.log(response.image);
+    user["picture"] = response.image
+  }
+
+  // actualizamos el documento
+  try {
+    
+    await this.firebase.updateDocument('user', user.uid, user);  
+  } catch (error) {
+    console.log(error);
+  }
+  
+  // actualizamos el firebase auth
+  const auth = getAuth();
+  let actual = auth.currentUser
+  
+  
+  updateEmail(actual,user.email).then(()=>{
+    console.log("okey")
+  }).catch((error)=>{
+    console.log(error)
+  });
+
+ }
  
+ uploadImage(file):Promise<any>{  
+  return new Promise(async (resolve, reject)=>{
+    try {
+      const data = await this.firebase.imageUpload(file);  
+      console.log("ok uploadImage")
+      resolve(data);
+    } catch (error) {
+      console.log(error)
+      resolve(error);
+    }
+  });
+}
 
 }

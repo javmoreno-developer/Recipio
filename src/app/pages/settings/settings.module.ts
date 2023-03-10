@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -11,14 +11,17 @@ import { CoreModule } from 'src/app/core/core.module';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { createTranslateLoader } from 'src/app/core/utils/js/translate';
 import { HttpClient } from '@angular/common/http';
+import { Camera } from '@awesome-cordova-plugins/camera/ngx';
+import { File } from '@awesome-cordova-plugins/file/ngx';
 
 @NgModule({
   imports: [
     CommonModule,
+    CoreModule,
     FormsModule,
     IonicModule,
     SettingsPageRoutingModule,
-    CoreModule,
+    ReactiveFormsModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
@@ -27,6 +30,7 @@ import { HttpClient } from '@angular/common/http';
       }
     }),
   ],
-  declarations: [SettingsPage]
+  declarations: [SettingsPage],
+  
 })
 export class SettingsPageModule {}

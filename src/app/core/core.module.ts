@@ -18,6 +18,8 @@ import { SignupComponent } from './components/signup/signup.component';
 import { RecipeBlockComponent } from './components/recipe-block/recipe-block.component';
 import { DurationComponent } from './components/duration/duration.component';
 import { ChipTimeComponent } from './components/chip-time/chip-time.component';
+import { Camera } from '@awesome-cordova-plugins/camera/ngx';
+import { File } from '@awesome-cordova-plugins/file/ngx';
 
 registerLocaleData(es);
 registerLocaleData(en);
@@ -65,6 +67,7 @@ registerLocaleData(en);
       useClass: LocaleId,
     deps: [LocaleService],
     },
+    File
   ]
 })
 export class CoreModule { }

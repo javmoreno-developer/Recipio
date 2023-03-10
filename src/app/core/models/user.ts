@@ -6,6 +6,7 @@ export interface User {
     token:string,
     surname:string,
     name:string
+    picture: string,
 }
 
 export interface UserLogin{
