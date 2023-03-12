@@ -15,11 +15,9 @@ export interface FirebaseDocument{
 export interface FirestoreImages{
 
 }
-export const FIRESTORE_TASKS_COLLECTION = 'tareando-tasks';
-export const FIRESTORE_PEOPLE_COLLECTION = 'tareando-people';
-export const FIRESTORE_ASSIGNMENTS_COLLECTION = 'tareando-assignments';
-export const FIRESTORE_IMAGES_COLLECTION = 'tareando-images';
-export const FIRESTORAGE_PREFIX_PATH = 'tareando-images';
+
+export const FIRESTORE_IMAGES_COLLECTION = 'recipio-images';
+export const FIRESTORAGE_PREFIX_PATH = 'recipio-images';
 
 
 @Injectable({providedIn: 'root'})
@@ -38,12 +36,14 @@ export abstract class FirebaseService{
   public abstract init();
   public abstract imageUpload(blob: Blob): Promise<any>;
   public abstract createDocument(collectionName:string, data:any):Promise<string>;
+  public abstract createDocumentWithBatch(collectionName:string, data:any):Promise<string>;
   public abstract createDocumentWithId(collectionName:string, data:any, docId:string):Promise<void>;
   public abstract updateDocument(collectionName:string, document:string, data:any):Promise<void>;
   public abstract getDocuments(collectionName:string):Promise<FirebaseDocument[]>;
   public abstract getDocument(collectionName:string, document:string):Promise<FirebaseDocument>;
   public abstract getDocumentsBy(collectionName:string, field:string, value:any):Promise<FirebaseDocument[]>;
   public abstract deleteDocument(collectionName:string, docId:string):Promise<void>;
+  public abstract deleteDocumentWithBatch(collectionName:string, docId:string, bookId: string):Promise<void>;
   public abstract subscribeToCollection(collectionName, subject: BehaviorSubject<any[]>, mapFunction:(el:DocumentData)=>any):Unsubscribe
   public abstract subscribeToCollectionWithQueryUser(collectionName, subject: BehaviorSubject<any[]>, mapFunction:(el:DocumentData)=>any,condition: string):Unsubscribe
   public abstract subscribeToCollectionWithQueryBook(collectionName, subject: BehaviorSubject<any[]>, mapFunction:(el:DocumentData)=>any,condition: string):Unsubscribe

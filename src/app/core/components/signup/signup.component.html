@@ -1,4 +1,4 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<form [formGroup]="form" (ngSubmit)="onSubmit(mybutton)">
 
   <ion-item>
     <ion-input type="text" placeholder="{{'placeholder.name' | translate}}" formControlName="name"></ion-input>
@@ -18,7 +18,7 @@
 
 
   <ion-item>
-    <ion-input type="text" placeholder="{{'placeholder.pass' | translate}}" formControlName="password"></ion-input>
+    <ion-input type="password" placeholder="{{'placeholder.pass' | translate}}" formControlName="password"></ion-input>
    
   </ion-item>
   <span
@@ -28,7 +28,7 @@
   
 
   <ion-item>
-    <ion-input type="text" placeholder="{{'placeholder.confirm_pass' | translate}}" formControlName="confirmPassword"></ion-input>
+    <ion-input type="password" placeholder="{{'placeholder.confirm_pass' | translate}}" formControlName="confirmPassword"></ion-input>
     
   </ion-item>
   <span
@@ -38,9 +38,9 @@
   
   <div>
 
-    <p id="delete_launch_settings">{{"login.sign_up_msg" | translate}} <span (click)="toRegister()">{{"login.sign_up_msg_2" |
+    <p id="delete_launch_settings">{{"login.sign_up_msg" | translate}} <span (click)="toRegister(mybutton)">{{"login.sign_up_msg_2" |
         translate}}</span></p>
-    <ion-button id="btn_accept" [disabled]="!form.valid" type="submit">{{"general.submit" | translate}}</ion-button>
+    <ion-button #mybutton id="btn_accept" [disabled]="!form.valid" type="submit">{{"general.submit" | translate}}</ion-button>
   </div>
 
 

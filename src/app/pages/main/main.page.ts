@@ -81,8 +81,8 @@ export class MainPage implements OnInit, OnDestroy {
       switch(result.data.mode) {
         case "crear":
           result.data.book.uid = uid;
-          result.data.book.recipes = [];
           console.log(result.data.book);
+          result.data.book.totalRecipes = 0
           this.bookSvc.createBook(result.data.book);
           break;
         case "actualizar":
@@ -136,11 +136,11 @@ export class MainPage implements OnInit, OnDestroy {
 
     // filtrado
     this._listCopy.value.forEach((item)=>{
+      console.log(item);
        if(item.title.includes(param.text)) {
          filtererList.push(item)
        }
     });
-    console.log(filtererList)
     this._listOriginal.next(filtererList)
  
    }

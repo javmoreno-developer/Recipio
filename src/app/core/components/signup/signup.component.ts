@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ModalController } from '@ionic/angular';
+import { IonButton, ModalController } from '@ionic/angular';
 import { PasswordValidation } from '../../utils/password-validator';
 
 @Component({
@@ -32,11 +32,13 @@ export class SignupComponent implements OnInit {
 
   ngOnInit() {}
 
-  onSubmit() {
+  onSubmit(param: IonButton) {
+    param.disabled = true;
     this.onSignup.emit(this.form.value);
   }
 
-  toRegister() {
+  toRegister(param: IonButton) {
+    param.disabled = true;
     this.onRegister.emit(false);
   }
 

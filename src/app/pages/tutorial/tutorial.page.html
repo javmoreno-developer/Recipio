@@ -1,5 +1,5 @@
 <ion-content>
-  <ion-slides>
+  <ion-slides #slides>
     <ion-slide>
       <div class="slide">
         <div class="title">
@@ -10,6 +10,7 @@
             {{"tutorial.text_slide_1" | translate}}
           </p>
         </div>
+        <ion-icon name="arrow-forward-outline" (click)="next(slides)"></ion-icon>
       </div>
       <div class="circles_container">
         <div class="circles_box" id="first_box">
@@ -21,15 +22,22 @@
     </ion-slide>
 
     <ion-slide>
-
-      <div class="title">
-        <h2>{{"tutorial.title_slide_2" | translate}}</h2>
+      <div class="slide">
+        <div class="title">
+          <h2>{{"tutorial.title_slide_2" | translate}}</h2>
+        </div>
+        <div class="text">
+          <p>
+            {{"tutorial.text_slide_2" | translate}}
+          </p>
+          <div id="arrow_container">
+            <ion-icon name="arrow-back-outline" (click)="prev(slides)"></ion-icon>
+            <ion-icon name="arrow-forward-outline" (click)="next(slides)"></ion-icon>
+          </div>
+        </div>
       </div>
-      <div class="text">
-        <p>
-          {{"tutorial.text_slide_2" | translate}}
-        </p>
-      </div>
+      
+      
       <div class="circles_container">
         <div class="circles_box" id="second_box">
           <div class="circle" id="c0"></div>
@@ -44,16 +52,19 @@
 
 
     <ion-slide>
-
-
-      <div class="title">
-        <h2>{{"tutorial.title_slide_3" | translate}}</h2>
+      <div class="slide">
+        <div class="title">
+          <h2>{{"tutorial.title_slide_3" | translate}}</h2>
+        </div>
+        <div class="text">
+          <ion-icon name="arrow-back-outline" (click)="prev(slides)"></ion-icon>
+          <ion-button fill="clear" [routerLink]="['/main']" color="button">{{"general.start" | translate}} <ion-icon slot="end"
+              name="arrow-forward"></ion-icon></ion-button>
+  
+        </div>
       </div>
-      <div class="text">
-        <ion-button fill="clear" [routerLink]="['/main']" color="button">{{"general.start" | translate}} <ion-icon slot="end"
-            name="arrow-forward"></ion-icon></ion-button>
 
-      </div>
+     
       <div class="circles_container">
         <div class="circles_box" id="third_box">
           <div class="circle" id="c0"></div>

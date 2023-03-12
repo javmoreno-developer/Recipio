@@ -42,8 +42,9 @@ export class RecipeService {
 
   }
 
-  async createRecipe(recipe: Recipe) {
+/*async createRecipe(recipe: Recipe) {
     try {
+      
       await this.firebase.createDocument("recipe",recipe).then((docRef)=>{
         recipe.docId = docRef
         this.updateRecipe(recipe)
@@ -51,6 +52,19 @@ export class RecipeService {
     } catch(error) {
       console.log(error);
     }
+}*/
+
+async createRecipe(recipe: Recipe) {
+  console.log(recipe)
+  try {
+    
+    await this.firebase.createDocumentWithBatch("recipe",recipe).then((docRef)=>{
+      recipe.docId = docRef
+      this.updateRecipe(recipe)
+    });
+  } catch(error) {
+    console.log(error);
+  }
 }
 
 getRecipeByBook(bookId: string) {
@@ -83,10 +97,19 @@ async updateRecipe(recipe:Recipe) {
   } 
 }
 
-async deleteRecipe(id: string) {
+/*async deleteRecipe(id: string) {
   console.log(id);
   try {
     await this.firebase.deleteDocument("recipe",id)
+  } catch(error) {
+    console.log(error);
+  }
+}*/
+
+async deleteRecipe(id: string,bookId: string) {
+  console.log(id);
+  try {
+    await this.firebase.deleteDocumentWithBatch("recipe",id,bookId)
   } catch(error) {
     console.log(error);
   }

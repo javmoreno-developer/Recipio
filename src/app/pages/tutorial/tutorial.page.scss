@@ -2,9 +2,19 @@ ion-slides {
   height: 100%;
   background-color: var(--ion-color-background);
     display: flex;
+    cursor: pointer;
     flex-direction: column;
 
 
+    .slide {
+      height: 33vh;
+    }
+    ion-icon {
+      font-size: 30px;
+    }
+    #arrow_container {
+      display: flex;
+    }
     .swiper-slide {
       display: block;
     }
@@ -51,15 +61,16 @@ ion-slides {
 
     .text {
       height: 10vh;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
       p {
         font-size: 20px;
       }
     }
     .circles_container {
-      height: 70vh;
+      height: 66vh;
       display: flex;
       align-items: flex-end;
       justify-content: center;
@@ -92,8 +103,8 @@ ion-slides {
         }
       }
       .circle {
-        height: 50%;
-        width: 7%;
+        height: 40%;
+        width: 6%;
         border-radius: 50%;
         background-color: var(--ion-color-grey);
       }

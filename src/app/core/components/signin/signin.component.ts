@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ModalController } from '@ionic/angular';
+import { IonButton, ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-signin',
@@ -26,12 +26,16 @@ export class SigninComponent implements OnInit {
 
   ngOnInit() {}
 
-  onSubmit() {
+  onSubmit(param: IonButton) {
+    param.disabled = true;
     this.onSignin.emit(this.form.value);
+    
   }
 
-  toRegister() {
+  toRegister(param: IonButton) {
+    param.disabled = true;
     this.onRegister.emit(true);
+    param.disabled = false;
   }
 
 }

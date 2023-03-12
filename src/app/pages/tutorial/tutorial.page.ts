@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { IonSlides } from '@ionic/angular';
 
 @Component({
   selector: 'app-tutorial',
@@ -9,7 +10,14 @@ export class TutorialPage implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  next(slider: IonSlides) {
+    slider.slideNext()
   }
 
+  prev(slider: IonSlides) {
+    slider.slidePrev()
+  }
+ 
 }

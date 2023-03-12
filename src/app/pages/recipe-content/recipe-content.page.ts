@@ -49,7 +49,7 @@ export class RecipeContentPage implements OnInit {
 
   ngOnInit() { 
     // pillo el id del libro
-    this.book_id = this.dataSvc.getData()
+    this.book_id = this.dataSvc.getData();
     //console.log(this.dataSvc.getUpdate());
     if(this.dataSvc.getUpdate()){
       console.log(this.dataSvc.getRecipe());

@@ -73,7 +73,7 @@ export class RecipesPage implements OnInit,OnDestroy {
      console.log(result.role);
      switch(result.role) {
       case "deleteRecipe":
-        this.recipeSvc.deleteRecipe(result.data.item.docId)
+        this.recipeSvc.deleteRecipe(result.data.item.docId, result.data.item.bookId)
         break;
       case "updateRecipe":
         this.dataSvc.setData(this.book_id);

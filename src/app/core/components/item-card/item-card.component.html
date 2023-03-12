@@ -1,6 +1,6 @@
 <div id="item_book_container" (click)="callDetail()" *ngIf="recipe == false">
   <h1>{{data.title}}</h1>
- 
+  <ion-chip>{{data.totalRecipes}} recetas</ion-chip>
 </div>
 
 <div id="item_recipe_container" (click)="callDetail()" *ngIf="recipe == true">

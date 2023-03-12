@@ -31,6 +31,7 @@ export class BookService {
       docId: doc["id"],
       title: doc["data"]().title,
       description: doc["data"]().description,
+      totalRecipes: doc["data"]().totalRecipes
     };
 
   }

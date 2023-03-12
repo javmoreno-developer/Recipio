@@ -12,11 +12,16 @@
       </ion-avatar>
 
       <ion-item>
+        <ion-input type="text" placeholder="{{'placeholder.name' | translate}}" formControlName="name"></ion-input>
+      </ion-item>
+
+
+      <ion-item>
         <ion-input type="text" placeholder="{{'placeholder.surname' | translate}}" formControlName="surname"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-input type="text" placeholder="{{'placeholder.name' | translate}}" formControlName="name"></ion-input>
+        <ion-input type="text" placeholder="{{'placeholder.nickname' | translate}}" formControlName="nickname"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -31,4 +36,11 @@
       </div>
     </form>
   </section>
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button color="dark" (click)="changeIdiom()">
+      <span title="{{'home.changeIdiom' | translate}}">
+        <ion-img src="../../../assets/images/{{imagen}}"></ion-img>
+      </span>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

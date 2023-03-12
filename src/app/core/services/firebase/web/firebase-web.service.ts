@@ -3,7 +3,7 @@ import { BehaviorSubject } from "rxjs";
 import { FirebaseDocument, FirebaseService, FIRESTORAGE_PREFIX_PATH, FirestoreImages, FIRESTORE_IMAGES_COLLECTION } from "../firebase-service";
 import { initializeApp, deleteApp, getApp } from "firebase/app";
 import { setUserId, setUserProperties } from "firebase/analytics";
-import { getFirestore, addDoc, collection, updateDoc, doc, onSnapshot, getDoc, setDoc, query, where, getDocs, Unsubscribe, DocumentData, deleteDoc, QueryConstraint } from "firebase/firestore";
+import { getFirestore, addDoc, collection, updateDoc, doc, onSnapshot, getDoc, setDoc, query, where, getDocs, Unsubscribe, DocumentData, deleteDoc, QueryConstraint, writeBatch, FieldValue, increment } from "firebase/firestore";
 import { getStorage, ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import { createUserWithEmailAndPassword, getAuth, deleteUser, signInAnonymously, signOut, signInWithEmailAndPassword, initializeAuth, indexedDBLocalPersistence, UserCredential } from "firebase/auth";
 
@@ -108,6 +108,61 @@ export class FirebaseWebService extends FirebaseService implements OnDestroy {
       ).catch(err => reject(err));
     });
   }
+
+  public createDocumentWithBatch(collectionName: string, data: any): Promise<string> {
+    return new Promise(async (resolve, reject) => {
+      var batch = writeBatch(this.db)
+      const newDocRef = await addDoc(collection(this.db, 'recipe'), {});
+
+      console.log(newDocRef.id);
+   
+      
+      
+
+    
+      
+      batch.set(newDocRef,data)
+      let bookReference = doc(this.db,"book",data.bookId)
+
+      batch.update(bookReference, {
+        totalRecipes: increment(1)
+      });
+      batch.commit()
+    });
+    
+  }
+
+  /*public deleteDocumentWithBatch(collectionName: string, docId: string): Promise<void> {
+    return new Promise(async (resolve, reject) => {
+      try {
+        await deleteDoc(doc(this.db, collectionName, docId));
+      } catch (error) {
+        reject(error);
+      }
+
+
+    });
+  }*/
+
+
+  public deleteDocumentWithBatch(collectionName: string, docId: string, bookId: string): Promise<void> {
+    return new Promise(async (resolve, reject) => {
+      var batch = writeBatch(this.db)
+      let recipeReference = doc(this.db,"recipe",docId)
+      batch.delete(recipeReference)
+
+      let bookReference = doc(this.db,"book",bookId)
+
+      batch.update(bookReference, {
+        totalRecipes: increment(-1)
+      });
+      
+      batch.commit()
+
+    });
+  }
+
+
 
   public createDocumentWithId(collectionName: string, data: any, docId: string): Promise<void> {
     return new Promise((resolve, reject) => {

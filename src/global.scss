@@ -74,4 +74,8 @@ textarea {
 }
 
   
- 
+ion-fab-button {
+    --ion-color-base: var(--ion-color-background)white !important;
+    border: 3px solid;
+    border-radius: 50%;
+ }

@@ -1,5 +1,65 @@
 {
+    "general": {
+        "start": "Start",
+        "app_title": "RECIPIO",
+        "submit": "Submit",
+        "cancell": "Cancell"
+    },
     "home": {
-        "title": "Personify,your app"
+        "title": "RECIPIO",
+        "subtitle": "Your app for cooking recipe",
+        "tutorial": "Tutorial"
+    },
+    "tutorial": {
+        "title_slide_1": "What is Recipio?",
+        "text_slide_1": "Recipio is an app for creating cooking books and manage them",
+        "title_slide_2": "What can I do with Recipio?",
+        "text_slide_2": "With Recipio you will be able to create awesome cooking books and share the with your friends",
+        "title_slide_3": "How can I start?"
+        
+    },
+    "searchbar": {
+        "books_pla": "Search a book",
+        "recipes_pla": "Search a recipe"
+    },
+    "main": {
+        "title":"Here are your books"
+    },
+    "main_recipes": {
+        "title":"Recipes that belongs to the book "
+    },
+    "placeholder": {
+        "name": "Name",
+        "surname": "Surname",
+        "desc": "Description",
+        "nickname": "Nickname",
+        "pass": "Pass",
+        "confirm_pass": "Confirm pass",
+        "email": "Email",
+        "title": "Title"
+    },
+    "modal": {
+        "add_title": "Add a book",
+        "upd_title": "Update the book",
+        "ope_msg": "What you want to do?",
+        "ope_upd": "Update a book",
+        "ope_see": "See recipes",
+        "ope_del": "Delete the book",
+        "ope_upd_rec": "Update the recipe",
+        "ope_del_rec": "Delete the recipe"
+    },
+    "settings": {
+        "delete_account": "Delete account"
+    },
+    "login": {
+        "sign_in_msg": "Do not you have an account?",
+        "sign_in_msg_2": "Register",
+        "sign_up_msg": "Do you have an account?",
+        "sign_up_msg_2": "Try it"
+    },
+    "validators":{
+        "passwordMatch": "Passwords do not match",
+        "passwordProto": "At least 8 characters, one uppercase letter, one lowercase letter, and one number",
+        "email": "You must enter a valid email"
     }
 }
