@@ -49,7 +49,7 @@
         "ope_del_rec": "Borrar receta"
     },
     "settings": {
-        "delete_account": "Borrar cuenta"
+        "delete_account": "Sign out"
     },
     "login": {
         "sign_in_msg": "¿No tienes cuenta?",

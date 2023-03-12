@@ -61,6 +61,7 @@ async createRecipe(recipe: Recipe) {
     await this.firebase.createDocumentWithBatch("recipe",recipe).then((docRef)=>{
       recipe.docId = docRef
       this.updateRecipe(recipe)
+      
     });
   } catch(error) {
     console.log(error);

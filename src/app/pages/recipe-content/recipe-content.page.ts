@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, ModalController, NavController } from '@ionic/angular';
@@ -45,7 +46,7 @@ export class RecipeContentPage implements OnInit {
   counterIngredients = this.segmentIngredientsSubject.value.length;
   counterProcess = this.segmentProcessSubject.value.length;
 
-  constructor(private cdr: ChangeDetectorRef, private alertController: AlertController,private modalCtr: ModalController, private recipeSvc: RecipeService,private dataSvc: DataService,private navController: NavController) {}
+  constructor(private location: Location,private cdr: ChangeDetectorRef, private alertController: AlertController,private modalCtr: ModalController, private recipeSvc: RecipeService,private dataSvc: DataService,private navController: NavController) {}
 
   ngOnInit() { 
     // pillo el id del libro
@@ -192,8 +193,10 @@ export class RecipeContentPage implements OnInit {
             console.log(recipe);
             if(this.dataSvc.getUpdate()) {
               this.recipeSvc.updateRecipe(recipe);
+              this.location.back()
             } else {
               this.recipeSvc.createRecipe(recipe);
+              this.location.back()
             }
           },
         },

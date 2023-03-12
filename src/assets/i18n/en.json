@@ -49,7 +49,7 @@
         "ope_del_rec": "Delete the recipe"
     },
     "settings": {
-        "delete_account": "Delete account"
+        "delete_account": "Sign out"
     },
     "login": {
         "sign_in_msg": "Do not you have an account?",
