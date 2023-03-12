@@ -25,7 +25,7 @@ npm i
 ## Links of interest 📖
 [Recipio's Figma](https://www.figma.com/file/hkerUdn2Eeo5qzy891yBh5/Galley?node-id=101%3A2&t=nZJpp9tfTj3iZ2RE-0) ✒️\
 [Kanban board](https://base.zenkit.com/c/gNiFMM6O7/recipio?v=ez6BbC_f-c) 👷\
-[Project presentation](https://youtu.be/PJKtdrzeRl4) 💯
+[Project presentation](https://youtu.be/87KITr_8ppw) 💯
 
 ## Authors
 
