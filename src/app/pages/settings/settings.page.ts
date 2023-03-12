@@ -45,7 +45,6 @@ export class SettingsPage implements OnInit {
 
     this.userSvc.user$.subscribe(item => {
       if (item) {
-        console.log(item);
         this.user = item as unknown as User;
         //item = item as User
         // obtengo los datos
@@ -69,7 +68,6 @@ export class SettingsPage implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.form.value)
     this.user["name"] = this.form.value["name"]
     this.user["surname"] = this.form.value["surname"]
     this.user["email"] = this.form.value["email"]

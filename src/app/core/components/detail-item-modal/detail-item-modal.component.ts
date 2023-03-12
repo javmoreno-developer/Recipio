@@ -31,7 +31,6 @@ export class DetailItemModalComponent implements OnInit {
   ngOnInit() { }
 
   modalOperation(param: string) {
-    console.log(param);
 
     this.modal.dismiss({ item: this.data }, param)
 

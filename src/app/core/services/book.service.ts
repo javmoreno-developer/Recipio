@@ -41,7 +41,6 @@ export class BookService {
   async createBook(book: Book) {
       try {
         await this.firebase.createDocument("book",book).then((docRef)=>{
-          console.log("Document written with ID: ", docRef);
           book.docId = docRef
           this.updateBook(book)
         });

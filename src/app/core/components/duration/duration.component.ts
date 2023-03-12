@@ -28,7 +28,6 @@ export class DurationComponent implements OnInit {
       var hours = dateFormat.split(":")[0]
       var minutes = dateFormat.split(":")[1];
       minutesTotal = parseInt(hours) * 60 + parseInt(minutes);
-      console.log(minutesTotal);
       msg = hours + ":" + minutes;
     } else {
       // vemos los chips que estan seleccionados
@@ -37,7 +36,6 @@ export class DurationComponent implements OnInit {
          minutesTotal += this.chipArrayValue[index];
         }
       });
-      console.log(minutesTotal)
       msg = minutesTotal + "min"
     }
     this.modalCtr.dismiss({type: type, content: minutesTotal, msg: msg})

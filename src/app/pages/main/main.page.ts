@@ -70,23 +70,19 @@ export class MainPage implements OnInit, OnDestroy {
     var uid = "";
 
     await this.userSvc.user$.subscribe(user =>{
-      //console.log(user);
       uid = user.uid
     });
 
     modal.onDidDismiss().then(result => {
       
-     //console.log(result);
      if(result && result.data) {
       switch(result.data.mode) {
         case "crear":
           result.data.book.uid = uid;
-          console.log(result.data.book);
           result.data.book.totalRecipes = 0
           this.bookSvc.createBook(result.data.book);
           break;
         case "actualizar":
-          console.log(result.data);
           this.bookSvc.updateBook(result.data.book);
           break;
       }
@@ -136,7 +132,6 @@ export class MainPage implements OnInit, OnDestroy {
 
     // filtrado
     this._listCopy.value.forEach((item)=>{
-      console.log(item);
        if(item.title.includes(param.text)) {
          filtererList.push(item)
        }

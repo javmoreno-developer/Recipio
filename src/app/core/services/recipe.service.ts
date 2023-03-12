@@ -55,7 +55,6 @@ export class RecipeService {
 }*/
 
 async createRecipe(recipe: Recipe) {
-  console.log(recipe)
   try {
     
     await this.firebase.createDocumentWithBatch("recipe",recipe).then((docRef)=>{
@@ -99,7 +98,6 @@ async updateRecipe(recipe:Recipe) {
 }
 
 /*async deleteRecipe(id: string) {
-  console.log(id);
   try {
     await this.firebase.deleteDocument("recipe",id)
   } catch(error) {
@@ -108,7 +106,6 @@ async updateRecipe(recipe:Recipe) {
 }*/
 
 async deleteRecipe(id: string,bookId: string) {
-  console.log(id);
   try {
     await this.firebase.deleteDocumentWithBatch("recipe",id,bookId)
   } catch(error) {

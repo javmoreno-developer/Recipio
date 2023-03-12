@@ -93,7 +93,6 @@ export class UserService {
   // subimos la imagen
   if(picture) {
     var response = await this.uploadImage(picture);
-    console.log(response.image);
     user["picture"] = response.image
   }
 
@@ -111,7 +110,6 @@ export class UserService {
   
   
   updateEmail(actual,user.email).then(()=>{
-    console.log("okey")
   }).catch((error)=>{
     console.log(error)
   });
@@ -122,7 +120,6 @@ export class UserService {
   return new Promise(async (resolve, reject)=>{
     try {
       const data = await this.firebase.imageUpload(file);  
-      console.log("ok uploadImage")
       resolve(data);
     } catch (error) {
       console.log(error)

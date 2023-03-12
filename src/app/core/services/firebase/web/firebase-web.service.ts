@@ -39,7 +39,6 @@ export class FirebaseWebService extends FirebaseService implements OnDestroy {
       if (user) {
         this._isLogged.next(true);
         this.setUserAndEmail(user.uid, user.email);
-        console.log(true);
       }
       else {
         this._isLogged.next(false);
@@ -114,7 +113,6 @@ export class FirebaseWebService extends FirebaseService implements OnDestroy {
       var batch = writeBatch(this.db)
       const newDocRef = await addDoc(collection(this.db, 'recipe'), {});
 
-      console.log(newDocRef.id);
    
       
       

@@ -29,7 +29,6 @@ export class RecipesPage implements OnInit,OnDestroy {
 
   constructor(private router: Router,private recipeSvc: RecipeService,private route: ActivatedRoute,private bookSvc: BookService,private modalCtr: ModalController, private dataSvc:DataService) {
     this.book_id = router.url.split("/")[2];
-    console.log(this.book_id);
     this.getAllRecipes(this.book_id)
    }
 
@@ -69,8 +68,7 @@ export class RecipesPage implements OnInit,OnDestroy {
     modal.present();
 
     modal.onDidDismiss().then(result => {
-     console.log(result);
-     console.log(result.role);
+
      switch(result.role) {
       case "deleteRecipe":
         this.recipeSvc.deleteRecipe(result.data.item.docId, result.data.item.bookId)
@@ -99,14 +97,12 @@ export class RecipesPage implements OnInit,OnDestroy {
    //this._listOriginal = this._listCopy
    let filtererList = []
 
-   console.log(this._listCopy.value)
    // filtrado
    this._listCopy.value.forEach((item)=>{
       if(item.title.includes(param.text)) {
         filtererList.push(item)
       }
    });
-   console.log(filtererList)
    this._listOriginal.next(filtererList)
 
   }

@@ -26,26 +26,22 @@ export class LocaleService {
       case 'es':
       case 'es-es':
         this._locale = 'es-es';
-        console.log('Application Culture Set to Spanish');
        
         break;  
      
       case 'en-us':
         this._locale = 'en-us';
-        console.log('Application Culture Set to English');
 
           break;
       case 'gb':
       case 'en':
       case 'en-uk':
         this._locale = 'en-uk';
-        console.log('Application Culture Set to English');
 
         break;
      
       default: {
         this._locale = 'en-uk';
-        console.log('Application Culture Set to English');
         break;
       }
     }

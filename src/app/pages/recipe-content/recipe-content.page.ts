@@ -51,9 +51,7 @@ export class RecipeContentPage implements OnInit {
   ngOnInit() { 
     // pillo el id del libro
     this.book_id = this.dataSvc.getData();
-    //console.log(this.dataSvc.getUpdate());
     if(this.dataSvc.getUpdate()){
-      console.log(this.dataSvc.getRecipe());
       
       this.recipeInput = this.dataSvc.getRecipe()
       this.docId = this.recipeInput.docId;
@@ -70,7 +68,6 @@ export class RecipeContentPage implements OnInit {
     let list = [];
     if (this.toShow == "ingredients") {
       list = this.segmentIngredientsSubject.value;
-      //console.log(list);
       // ingredients list
       list.push({ blockId: this.counterIngredients, title: "", content: { text: "" } });
       this.counterIngredients++;
@@ -102,13 +99,11 @@ export class RecipeContentPage implements OnInit {
         list[i].blockId --; 
       }
 
-      console.log(list)
       this.segmentIngredientsSubject.next(list)
     } else {
       list = this.segmentProcessSubject.value.filter((element) => {
         return element.blockId != param;
       });
-      console.log(list)
       this.segmentProcessSubject.next(list)
     }
   }
@@ -116,7 +111,6 @@ export class RecipeContentPage implements OnInit {
   changeView(param) {
     this.toShow = param;
 
-    console.log("mostrando: " + this.toShow)
   }
 
   setWarnMsg(duration) {
@@ -190,7 +184,6 @@ export class RecipeContentPage implements OnInit {
               process: process,
               ingredients: ingredients
             }
-            console.log(recipe);
             if(this.dataSvc.getUpdate()) {
               this.recipeSvc.updateRecipe(recipe);
               this.location.back()
@@ -209,11 +202,9 @@ export class RecipeContentPage implements OnInit {
 
   //
   updateItem(param) {
-    console.log(param)
   }
 
   expandItem(object, accordion) {
-   // console.log(object);
     accordion.readonly = object.state
     this.cdr.detectChanges()
   }
@@ -233,11 +224,8 @@ async openDur() {
   modal.onDidDismiss().then(result => {
     switch(result.data.type) {
       case "cancell":
-        console.log("cancelando");
         break;
       case "submit":
-        console.log("enviando");
-        console.log(result.data.content)
         this.durationTotal = result.data.content;
         this.durationMsg = result.data.msg;
         break;

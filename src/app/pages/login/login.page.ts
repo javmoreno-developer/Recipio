@@ -38,7 +38,6 @@ export class LoginPage implements OnInit {
     try {
       await this.user.login(param);
       this.router.navigate(['main'], {replaceUrl:true});
-      console.log("logueado");
     } catch (error) {
       console.log(error);
 
