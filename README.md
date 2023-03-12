@@ -7,10 +7,7 @@ An application for creating **cooking books and recipes**
 <img src="https://user-images.githubusercontent.com/55782974/224534190-d2e9adc0-82d3-4258-a38e-95edf3fbac95.png" data-canonical-src="https://user-images.githubusercontent.com/55782974/224534190-d2e9adc0-82d3-4258-a38e-95edf3fbac95.png" width="100" height="100" />
 
 ## Starting
-
-There's two options for trying Recipio:
-- You can visit the project online (link).
-- You can fork the project
+You can fork the project
 
 If you want to fork the project you must reinstall the dependencies after you downloaded the source code:
 ```javascript
